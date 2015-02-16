@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.fenixedu.ulisboa</groupId>
+	<artifactId>themes</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa</groupId>
+			<artifactId>fenixedu-ulisboa-theme</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<ulisboa-themes-version>0.0.1-SNAPSHOT</ulisboa-themes-version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.fenixedu.ulisboa</groupId>
+				<artifactId>ulisboa-theme-configurator</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>configure-theme</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>fba</module>
+		<module>fc</module>
+		<module>fd</module>
+		<module>ff</module>
+		<module>fl</module>
+		<module>fm</module>
+		<module>fmd</module>
+		<module>fmh</module>
+		<module>fmv</module>
+		<module>fp</module>
+		<module>ics</module>
+		<module>ie</module>
+		<module>igot</module>
+		<module>iscsp</module>
+		<module>ul</module>
+		<module>aggregator</module>
+	</modules>
+
+</project>

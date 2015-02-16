@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>org.fenixedu.ulisboa</groupId>
+		<artifactId>themes</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.fenixedu.ulisboa.themes</groupId>
+	<artifactId>themes-agregator</artifactId>
+    
+	<dependencies>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>fba-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>fc-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>fd-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>ff-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>fl-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>fm-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>fmd-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>fmh-theme</artifactId>
+		</dependency>
+		  
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>fmv-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>fp-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>ics-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>ie-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>igot-theme</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>iscsp-theme</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
