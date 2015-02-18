@@ -16,6 +16,7 @@
 
 	<properties>
 		<ulisboa-themes-version>0.0.1-SNAPSHOT</ulisboa-themes-version>
+		<version.ulisboa-repo.location>http://ul-nexjen.ulisboa.pt:8081</version.ulisboa-repo.location>
 	</properties>
 
 	<build>
@@ -53,5 +54,17 @@
 		<module>ul</module>
 		<module>aggregator</module>
 	</modules>
+
+	<distributionManagement>
+		<repository>
+			<id>ulisboa-repo</id>
+			<url>${version.ulisboa-repo.location}/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>ulisboa-repo</id>
+			<url>${version.ulisboa-repo.location}/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 
 </project>

@@ -9,5 +9,5 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.fenixedu.ulisboa.themes</groupId>
-	<artifactId>fba</artifactId>
+	<artifactId>ul-theme</artifactId>
 </project>
