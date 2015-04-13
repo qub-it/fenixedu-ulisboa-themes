@@ -166,7 +166,6 @@
 					</li>
 					{% if professorship.permissions.summaries %}
 					<li>
-						<!-- NO_CHECKSUM -->
 	 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/searchECLog.do?method=prepareInit&executionCourseID="+executionCourse.externalId, session ) }}">
 							{{ i18n("resources.ApplicationResources", "link.executionCourse.log") }}
 						</a>
@@ -195,17 +194,15 @@
 							</li>
 						{% endif %}
 						{% if professorship.permissions.sections %}
-							<li class="disabled">
+							<li>
 								<!-- NO_CHECKSUM -->
-								<!--  href="{{contextPath}}/teacher/{{executionCourse.externalId}}/pages"--> 
-								<a>
+								<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/pages">
 									{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.sections") }}
 								</a>
 							</li>
 						{% endif %}
 					{% endif %}
 					<li>
-						<!-- NO_CHECKSUM -->
 						<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/executionCourseForumManagement.do?method=viewForuns&executionCourseID="+executionCourse.externalId, session ) }}">
 							{{ i18n("resources.ApplicationResources", "link.teacher.executionCourseManagement.foruns") }}
 						</a>
@@ -217,20 +214,19 @@
 					</li>
 					{% if professorship.permissions.summaries %}
 						<li>
-							<!-- NO_CHECKSUM -->
 							<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/summariesManagement.do?method=prepareShowSummaries&executionCourseID="+executionCourse.externalId, session ) }}">
 								{{ i18n("resources.ApplicationResources", "link.summaries") }}
 							</a>
 						</li>
 					{% endif %}
 					<li>
-						<!-- NO_CHECKSUM -->
 						<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/teachersManagerDA.do?method=viewTeachersByProfessorship&executionCourseID="+executionCourse.externalId, session ) }}">
 							{{ i18n("resources.ApplicationResources", "link.teachers") }}
 						</a>
 					</li>
 					{% if professorship.permissions.students %}
 						<li>
+						<!-- NO_CHECKSUM -->
 		                	<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/attends/show">
 								{{ i18n("resources.ApplicationResources", "link.students") }}
 							</a>
@@ -238,20 +234,19 @@
 					{% endif %}
 					{% if professorship.permissions.planning %}
 						<li>
-							<!-- NO_CHECKSUM -->
 							<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageExecutionCourse.do?method=lessonPlannings&executionCourseID="+executionCourse.externalId, session ) }}">
 								{{ i18n("resources.ApplicationResources", "link.lessonPlannings") }}
 							</a>
 						</li>
 					{% endif %}
 	<!-- 				<li> -->
-	<!-- 					NO_CHECKSUM -->
 	<!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/markSheetManagement.do?method=evaluationIndex&executionCourseID="+executionCourse.externalId, session ) }}"> -->
 	<!-- 						{{ i18n("resources.ApplicationResources", "link.evaluation") }} -->
 	<!-- 					</a> -->
 	<!-- 				</li> -->
 					{% if professorship.permissions.groups %}
 						<li>
+							<!-- NO_CHECKSUM -->
 		                	<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/student-groups/show">
 								{{ i18n("resources.ApplicationResources", "link.groupsManagement") }}
 							</a>
@@ -259,7 +254,6 @@
 					{% endif %}
 					{% if professorship.permissions.shift %}
 						<li>
-							<!-- NO_CHECKSUM -->
 							<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageExecutionCourse.do?method=manageShifts&executionCourseID="+executionCourse.externalId, session ) }}">
 								{{ i18n("resources.ApplicationResources", "label.shifts") }}
 							</a>
@@ -271,20 +265,17 @@
 						<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.curricularInfo") }}</strong>
 					</li>
 					<li>
-						<!-- NO_CHECKSUM -->
 						<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageObjectives.do?method=objectives&executionCourseID="+executionCourse.externalId, session ) }}">
 							{{ i18n("resources.ApplicationResources", "link.objectives") }}
 						</a>
 					</li>
 					<li>
-						<!-- NO_CHECKSUM -->
 						<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageProgram.do?method=program&executionCourseID="+executionCourse.externalId, session ) }}">
 							{{ i18n("resources.ApplicationResources", "link.program") }}
 						</a>
 					</li>
 					{% if professorship.permissions.evaluationMethod %}
 						<li>
-							<!-- NO_CHECKSUM -->
 							<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageEvaluationMethod.do?method=evaluationMethod&executionCourseID="+executionCourse.externalId, session ) }}">
 								{{ i18n("resources.ApplicationResources", "link.evaluationMethod") }}
 							</a>
@@ -292,7 +283,6 @@
 					{% endif %}
 					{% if professorship.permissions.bibliografy %}
 						<li>
-							<!-- NO_CHECKSUM -->
 							<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageBibliographicReference.do?method=bibliographicReference&executionCourseID="+executionCourse.externalId, session ) }}">
 								{{ i18n("resources.ApplicationResources", "link.bibliography") }}
 							</a>
@@ -304,14 +294,12 @@
 	<!-- 					<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.curricularUnitsQuality") }}</strong> -->
 	<!-- 				</li> -->
 	<!-- 				<li> -->
-	<!-- 					NO_CHECKSUM -->
 	<!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/teachingInquiry.do?method=showInquiriesPrePage&executionCourseID="+executionCourse.externalId, session ) }}"> -->
 	<!-- 						{{ i18n("resources.ApplicationResources", "link.teachingReportManagement") }} -->
 	<!-- 					</a> -->
 	<!-- 				</li> -->
 	<!-- 				{% if professorship.responsibleFor %} -->
 	<!-- 				<li> -->
-	<!-- 					NO_CHECKSUM -->
 	<!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/regentInquiry.do?method=showInquiriesPrePage&executionCourseID="+executionCourse.externalId, session ) }}"> -->
 	<!-- 						{{ i18n("resources.ApplicationResources", "link.regentReportManagement") }} -->
 	<!-- 					</a> -->
