@@ -210,11 +210,9 @@ public class ThemeConfigurator extends AbstractMojo {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(jar.getInputStream(file)));
                 String line = null;
                 while ((line = bufferedReader.readLine()) != null) {
-                    if (file.getName().endsWith("html")) {
-                        //All occurrences of {{school-theme}} will be replaced by artifactID of the specific project  
-                        String newLine = line.replaceAll("\\{\\{school-theme\\}\\}", mavenProject.getArtifactId()) + "\n";
-                        fos.write(newLine.getBytes());
-                    }
+                    //All occurrences of {{school-theme}} will be replaced by artifactID of the specific project  
+                    String newLine = line.replaceAll("\\{\\{school-theme\\}\\}", mavenProject.getArtifactId()) + "\n";
+                    fos.write(newLine.getBytes());
                 }
                 bufferedReader.close();
             } else {
