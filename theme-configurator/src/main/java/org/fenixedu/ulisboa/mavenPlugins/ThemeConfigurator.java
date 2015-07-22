@@ -212,7 +212,8 @@ public class ThemeConfigurator extends AbstractMojo {
                 while ((line = bufferedReader.readLine()) != null) {
                     if (file.getName().endsWith("html")) {
                         //All occurrences of {{school-theme}} will be replaced by artifactID of the specific project  
-                        fos.write(line.replaceAll("\\{\\{school-theme\\}\\}", mavenProject.getArtifactId() + '\n').getBytes());
+                        String newLine = line.replaceAll("\\{\\{school-theme\\}\\}", mavenProject.getArtifactId()) + "\n";
+                        fos.write(newLine.getBytes());
                     }
                 }
                 bufferedReader.close();
