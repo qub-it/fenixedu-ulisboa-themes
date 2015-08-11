@@ -198,9 +198,19 @@
 				</div>
 				<p class="col-sm-10">
 					<span>{{config.applicationCopyright.content}}</span>
-					<a href="mailto:{{config.supportEmailAddress}}">{{i18n('resources.ULisboaThemeResources', 'link.support')}}</a>
+					<a href="" onclick="openHelpdesk(); return false;">
+						{{i18n('resources.ULisboaThemeResources', 'link.helpdeskReport')}}
+					</a>
 				</p>
 		</footer>
+		<div class="modal fade" id="helpdeskModal"></div>
+		<script>
+			openHelpdesk = function() { 
+				$('#helpdeskModal').load('{{contextPath}}/themes/ulisboa/helpdeskReport.jsp');
+				$('#helpdeskModal').modal('show');
+				window.current$functionality = '{{functionality.externalId}}';
+			};
+		</script>
 		{% endblock %}
 	</body>
 	
