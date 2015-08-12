@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import="org.fenixedu.commons.i18n.I18N" %>
+<%@ page import="org.fenixedu.bennu.portal.domain.PortalConfiguration;" %>
 
 <fmt:setLocale value='<%= I18N.getLocale().getLanguage() %>'/>
 <fmt:setBundle basename="resources.ULisboaThemeResources" var="lang"/>
@@ -61,7 +62,7 @@
         </div>
         <div class="modal-body success text-center hide">
             <h3><fmt:message key="label.helpdesk.report.submitted" bundle="${lang}"/></h3>
-            <fmt:message key="label.helpdesk.report.submitted.body" bundle="${lang}"/> <a href="mailto:changeme@to.do">changeme@to.do</a>.
+            <fmt:message key="label.helpdesk.report.submitted.body" bundle="${lang}"/> <a href="mailto:<%= PortalConfiguration.getInstance().getSupportEmailAddress() %>"><%= PortalConfiguration.getInstance().getSupportEmailAddress() %></a>.
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary"><fmt:message key="label.helpdesk.report.submit" bundle="${lang}"/></button>
