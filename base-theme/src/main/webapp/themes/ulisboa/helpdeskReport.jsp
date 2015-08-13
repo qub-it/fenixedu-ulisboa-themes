@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import="org.fenixedu.commons.i18n.I18N" %>
-<%@ page import="org.fenixedu.bennu.portal.domain.PortalConfiguration;" %>
+<%@ page import="org.fenixedu.bennu.portal.domain.PortalConfiguration" %>
 
 <fmt:setLocale value='<%= I18N.getLocale().getLanguage() %>'/>
 <fmt:setBundle basename="resources.ULisboaThemeResources" var="lang"/>
