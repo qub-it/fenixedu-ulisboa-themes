@@ -206,7 +206,7 @@
 		<div class="modal fade" id="helpdeskModal"></div>
 		<script>
 			openHelpdesk = function() { 
-				$('#helpdeskModal').load('{{contextPath}}/themes/ulisboa/helpdeskReport.jsp');
+				$('#helpdeskModal').load('{{contextPath}}/themes/{{school-theme}}/helpdeskReport.jsp');
 				$('#helpdeskModal').modal('show');
 				window.current$functionality = '{{functionality.externalId}}';
 			};
