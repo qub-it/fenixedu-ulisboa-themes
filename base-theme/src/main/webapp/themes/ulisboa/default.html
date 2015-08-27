@@ -207,7 +207,10 @@
 		<script>
 			openHelpdesk = function() { 
 				$('#helpdeskModal').load('{{contextPath}}/themes/{{school-theme}}/helpdeskReport.jsp');
-				$('#helpdeskModal').modal('show');
+				$('#helpdeskModal').modal({
+					backdrop: 'static',
+					keyboard: false
+				});
 				window.current$functionality = '{{functionality.externalId}}';
 			};
 		</script>
