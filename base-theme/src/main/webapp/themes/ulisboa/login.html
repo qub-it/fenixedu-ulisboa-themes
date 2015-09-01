@@ -11,6 +11,9 @@
 
     <title>Login · {{config.applicationTitle.content}} </title>
 
+	<link rel="stylesheet" type="text/css" media="screen" href="{{contextPath}}/themes/{{school-theme}}/css/general.css">
+    <link href="{{contextPath}}/themes/{{school-theme}}/css/style.css" rel="stylesheet">
+    
     <link href="{{contextPath}}/bennu-portal/css/login.css" rel="stylesheet">
     <script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="{{contextPath}}/api/bennu-portal/configuration/favicon">
@@ -31,6 +34,10 @@
 	  			<div class="alert-login">
 	  				{{i18n('resources.BennuPortalResources', 'label.logging.in')}}
 	  			</div>
+	  			<div class="login-warning" style="display: none;">
+	  				{{i18n('resources.ULisboaThemeResources', 'label.onlyAvailableAfterEnrolments')}}
+	  			</div>
+	  			
 	  			<form method="POST">
 	  				<input type="hidden" name="callback" value="{{callback}}" />
 
