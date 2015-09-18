@@ -50,13 +50,13 @@
 				{{ i18n("resources.ApplicationResources", "link.executionCourseManagement.menu.view.course.page" ) }}
 				</a>
 			</li>
-			{% if professorship.permissions.summaries %}
-			<li>
-					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/searchECLog.do?method=prepareInit&executionCourseID="+executionCourse.externalId, session ) }}">
-					{{ i18n("resources.ApplicationResources", "link.executionCourse.log") }}
-				</a>
-			</li>
-			{% endif %}
+<!-- 			{% if professorship.permissions.summaries %} -->
+<!-- 			<li> -->
+<!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/searchECLog.do?method=prepareInit&executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.executionCourse.log") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			{% endif %} -->
 		</ul>
 {# /STICKY_ITEMS_MENU #}
 		
