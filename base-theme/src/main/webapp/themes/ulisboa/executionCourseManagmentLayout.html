@@ -41,6 +41,8 @@
 	</li>
 </ul>
 	<div class="nav-group-contextualized">
+	
+{# STICKY_ITEMS_MENU #}
 		<ul class="nav nav-pills nav-stacked">
 			<li>
 				<!-- NO_CHECKSUM -->
@@ -56,42 +58,48 @@
 			</li>
 			{% endif %}
 		</ul>
-		<ul class="nav nav-pills nav-stacked">
-			<li class="navheader">
-				<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.communication") }}</strong>
-			</li>
-			{% if professorship.permissions.personalization %}
-				<li>
-					<!-- NO_CHECKSUM -->
-					<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/communication">
-					{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.communication") }}
-					</a>
-				</li>
-			{% endif %}
-			{% if executionCourse.site is not empty %}
-				{% if professorship.permissions.announcements %}
-					<li>
-						<!-- NO_CHECKSUM -->
-						<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/announcements">
-							{{ i18n("resources.ApplicationResources", "link.announcements") }}
-						</a>
-					</li>
-				{% endif %}
-				{% if professorship.permissions.sections %}
-					<li>
-						<!-- NO_CHECKSUM -->
-						<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/pages">
-							{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.sections") }}
-						</a>
-					</li>
-				{% endif %}
-			{% endif %}
-			<li>
-				<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/executionCourseForumManagement.do?method=viewForuns&executionCourseID="+executionCourse.externalId, session ) }}">
-					{{ i18n("resources.ApplicationResources", "link.teacher.executionCourseManagement.foruns") }}
-				</a>
-			</li>
-		</ul>
+{# /STICKY_ITEMS_MENU #}
+		
+{# COMMUNICATION_MENU #}
+<!-- 		<ul class="nav nav-pills nav-stacked"> -->
+<!-- 			<li class="navheader"> -->
+<!-- 				<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.communication") }}</strong> -->
+<!-- 			</li> -->
+<!-- 			{% if professorship.permissions.personalization %} -->
+<!-- 				<li> -->
+<!-- 					NO_CHECKSUM -->
+<!-- 					<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/communication"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.communication") }} -->
+<!-- 					</a> -->
+<!-- 				</li> -->
+<!-- 			{% endif %} -->
+<!-- 			{% if executionCourse.site is not empty %} -->
+<!-- 				{% if professorship.permissions.announcements %} -->
+<!-- 					<li> -->
+<!-- 						NO_CHECKSUM -->
+<!-- 						<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/announcements"> -->
+<!-- 							{{ i18n("resources.ApplicationResources", "link.announcements") }} -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 				{% endif %} -->
+<!-- 				{% if professorship.permissions.sections %} -->
+<!-- 					<li> -->
+<!-- 						NO_CHECKSUM -->
+<!-- 						<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/pages"> -->
+<!-- 							{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.sections") }} -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 				{% endif %} -->
+<!-- 			{% endif %} -->
+<!-- 			<li> -->
+<!-- 				<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/executionCourseForumManagement.do?method=viewForuns&executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.teacher.executionCourseManagement.foruns") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 		</ul> -->
+{# /COMMUNICATION_MENU #}
+		
+{# COURSE_MANAGEMENT_MENU #}
 		<ul class="nav nav-pills nav-stacked">
 			<li class="navheader">
 				<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.management") }}</strong>
@@ -116,63 +124,71 @@
 					</a>
 				</li>
 			{% endif %}
-			{% if professorship.permissions.planning %}
-				<li>
-					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageExecutionCourse.do?method=lessonPlannings&executionCourseID="+executionCourse.externalId, session ) }}">
-						{{ i18n("resources.ApplicationResources", "link.lessonPlannings") }}
-					</a>
-				</li>
-			{% endif %}
+<!-- 			{% if professorship.permissions.planning %} -->
+<!-- 				<li> -->
+<!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageExecutionCourse.do?method=lessonPlannings&executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 						{{ i18n("resources.ApplicationResources", "link.lessonPlannings") }} -->
+<!-- 					</a> -->
+<!-- 				</li> -->
+<!-- 			{% endif %} -->
+
+<!-- 				DO NOT REACTIVATE -->
 <!-- 				<li> -->
 <!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/markSheetManagement.do?method=evaluationIndex&executionCourseID="+executionCourse.externalId, session ) }}"> -->
 <!-- 						{{ i18n("resources.ApplicationResources", "link.evaluation") }} -->
 <!-- 					</a> -->
 <!-- 				</li> -->
-			{% if professorship.permissions.groups %}
-				<li>
-					<!-- NO_CHECKSUM -->
-                	<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/student-groups/show">
-						{{ i18n("resources.ApplicationResources", "link.groupsManagement") }}
-					</a>
-				</li>
-			{% endif %}
-			{% if professorship.permissions.shift %}
-				<li>
-					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageExecutionCourse.do?method=manageShifts&executionCourseID="+executionCourse.externalId, session ) }}">
-						{{ i18n("resources.ApplicationResources", "label.shifts") }}
-					</a>
-				</li>
-			{% endif %}
+				
+<!-- 			{% if professorship.permissions.groups %} -->
+<!-- 				<li> -->
+<!-- 					NO_CHECKSUM -->
+<!--                 	<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/student-groups/show"> -->
+<!-- 						{{ i18n("resources.ApplicationResources", "link.groupsManagement") }} -->
+<!-- 					</a> -->
+<!-- 				</li> -->
+<!-- 			{% endif %} -->
+<!-- 			{% if professorship.permissions.shift %} -->
+<!-- 				<li> -->
+<!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageExecutionCourse.do?method=manageShifts&executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 						{{ i18n("resources.ApplicationResources", "label.shifts") }} -->
+<!-- 					</a> -->
+<!-- 				</li> -->
+<!-- 			{% endif %} -->
 		</ul>
-		<ul class="nav nav-pills nav-stacked">
-			<li class="navheader">
-				<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.curricularInfo") }}</strong>
-			</li>
-			<li>
-				<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageObjectives.do?method=objectives&executionCourseID="+executionCourse.externalId, session ) }}">
-					{{ i18n("resources.ApplicationResources", "link.objectives") }}
-				</a>
-			</li>
-			<li>
-				<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageProgram.do?method=program&executionCourseID="+executionCourse.externalId, session ) }}">
-					{{ i18n("resources.ApplicationResources", "link.program") }}
-				</a>
-			</li>
-			{% if professorship.permissions.evaluationMethod %}
-				<li>
-					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageEvaluationMethod.do?method=evaluationMethod&executionCourseID="+executionCourse.externalId, session ) }}">
-						{{ i18n("resources.ApplicationResources", "link.evaluationMethod") }}
-					</a>
-				</li>
-			{% endif %}
-			{% if professorship.permissions.bibliografy %}
-				<li>
-					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageBibliographicReference.do?method=bibliographicReference&executionCourseID="+executionCourse.externalId, session ) }}">
-						{{ i18n("resources.ApplicationResources", "link.bibliography") }}
-					</a>
-				</li>
-			{% endif %}
-		</ul>
+{# /COURSE_MANAGEMENT_MENU #}
+
+{# CURRICULAR_INFO_MENU #}
+<!-- 		<ul class="nav nav-pills nav-stacked"> -->
+<!-- 			<li class="navheader"> -->
+<!-- 				<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.curricularInfo") }}</strong> -->
+<!-- 			</li> -->
+<!-- 			<li> -->
+<!-- 				<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageObjectives.do?method=objectives&executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.objectives") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			<li> -->
+<!-- 				<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageProgram.do?method=program&executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.program") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			{% if professorship.permissions.evaluationMethod %} -->
+<!-- 				<li> -->
+<!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageEvaluationMethod.do?method=evaluationMethod&executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 						{{ i18n("resources.ApplicationResources", "link.evaluationMethod") }} -->
+<!-- 					</a> -->
+<!-- 				</li> -->
+<!-- 			{% endif %} -->
+<!-- 			{% if professorship.permissions.bibliografy %} -->
+<!-- 				<li> -->
+<!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageBibliographicReference.do?method=bibliographicReference&executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 						{{ i18n("resources.ApplicationResources", "link.bibliography") }} -->
+<!-- 					</a> -->
+<!-- 				</li> -->
+<!-- 			{% endif %} -->
+<!-- 		</ul> -->
+{# /CURRICULAR_INFO_MENU #}
+
 <!-- 			<ul class="nav nav-pills nav-stacked"> -->
 <!-- 				<li class="navheader"> -->
 <!-- 					<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.curricularUnitsQuality") }}</strong> -->
@@ -190,46 +206,50 @@
 <!-- 				</li> -->
 <!-- 				{% endif %} -->
 <!-- 			</ul> -->
-		<ul class="nav nav-pills nav-stacked">
-			<li class="navheader">
-				<strong>{{ i18n("resources.ApplicationResources", "link.evaluation") }}</strong>
-			</li>
-			{% if professorship.permissions.evaluationSpecific %}
-			<li>
-			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/adHocEvaluationIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}">
-					{{ i18n("resources.ApplicationResources", "link.adHocEvaluations") }}
-				</a>
-			</li>
-			{% endif %}
-			{% if professorship.permissions.evaluationProject %}
-			<li>
-			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/projectsIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}">
-					{{ i18n("resources.ApplicationResources", "link.projects") }}
-				</a>
-			</li>
-			{% endif %}
-			{% if professorship.permissions.evaluationTests %}
-			<li>
-			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/writtenTestsIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}">
-					{{ i18n("resources.ApplicationResources", "link.writtenTests") }}
-				</a>
-			</li>
-			{% endif %}
-			{% if professorship.permissions.evaluationExams %}
-			<li>
-			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/examsIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}">
-					{{ i18n("resources.ApplicationResources", "link.exams") }}
-				</a>
-			</li>
-			{% endif %}
-			{% if professorship.permissions.evaluationFinal %}
-			<li>
-			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/finalEvaluationIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}">
-					{{ i18n("resources.ApplicationResources", "link.finalEvaluation") }}
-				</a>
-			</li>
-			{% endif %}
-		</ul>
+
+{# EVALUATIONS_MENU #}
+<!-- 		<ul class="nav nav-pills nav-stacked"> -->
+<!-- 			<li class="navheader"> -->
+<!-- 				<strong>{{ i18n("resources.ApplicationResources", "link.evaluation") }}</strong> -->
+<!-- 			</li> -->
+<!-- 			{% if professorship.permissions.evaluationSpecific %} -->
+<!-- 			<li> -->
+<!-- 			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/adHocEvaluationIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.adHocEvaluations") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			{% endif %} -->
+<!-- 			{% if professorship.permissions.evaluationProject %} -->
+<!-- 			<li> -->
+<!-- 			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/projectsIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.projects") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			{% endif %} -->
+<!-- 			{% if professorship.permissions.evaluationTests %} -->
+<!-- 			<li> -->
+<!-- 			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/writtenTestsIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.writtenTests") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			{% endif %} -->
+<!-- 			{% if professorship.permissions.evaluationExams %} -->
+<!-- 			<li> -->
+<!-- 			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/examsIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.exams") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			{% endif %} -->
+<!-- 			{% if professorship.permissions.evaluationFinal %} -->
+<!-- 			<li> -->
+<!-- 			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/finalEvaluationIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.finalEvaluation") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			{% endif %} -->
+<!-- 		</ul> -->
+{# /EVALUATIONS_MENU #}
+
 	</div>
 {% endif %}
 </nav>
