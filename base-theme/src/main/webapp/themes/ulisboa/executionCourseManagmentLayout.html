@@ -104,6 +104,14 @@
 			<li class="navheader">
 				<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.management") }}</strong>
 			</li>
+			{% if professorship.permissions.students %}
+				<li>
+				<!-- NO_CHECKSUM -->
+                	<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/attends/show">
+						{{ i18n("resources.ApplicationResources", "link.students") }}
+					</a>
+				</li>
+			{% endif %}
 			{% if professorship.permissions.summaries %}
 				<li>
 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/summariesManagement.do?method=prepareShowSummaries&executionCourseID="+executionCourse.externalId, session ) }}">
@@ -116,14 +124,7 @@
 					{{ i18n("resources.ApplicationResources", "link.teachers") }}
 				</a>
 			</li>
-			{% if professorship.permissions.students %}
-				<li>
-				<!-- NO_CHECKSUM -->
-                	<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/attends/show">
-						{{ i18n("resources.ApplicationResources", "link.students") }}
-					</a>
-				</li>
-			{% endif %}
+
 <!-- 			{% if professorship.permissions.planning %} -->
 <!-- 				<li> -->
 <!-- 					<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/manageExecutionCourse.do?method=lessonPlannings&executionCourseID="+executionCourse.externalId, session ) }}"> -->
