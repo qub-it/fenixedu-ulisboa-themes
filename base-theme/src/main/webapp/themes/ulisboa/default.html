@@ -58,7 +58,7 @@
 		$.post('{{contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).always(function() { location.reload(); });
 	}
 	</script>
-	
+
 	<!-- Favicons & TouchIcons-->
 	<link rel="shortcut icon" type="image/x-icon" href="{{contextPath}}/api/bennu-portal/configuration/favicon">
 
@@ -72,7 +72,7 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="{{contextPath}}/" target="_blank">{{config.applicationTitle.content}}</a></li>
 			</div>
-			
+
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav" >
 					<li class="btn-warning" style="font-weight: bold;">
@@ -141,7 +141,7 @@
 			</div>
 		</main>
 		<div class="col-sm-2 col-sm-pull-10 panel-group" id="accordion">
-		{% if functionality.parent.parent == config.menu %} 
+		{% if functionality.parent.parent == config.menu %}
 			{% set root = functionality %}
 		{% else %}
 			{% set root = functionality.parent %}
@@ -198,14 +198,18 @@
 				</div>
 				<p class="col-sm-10">
 					<span>{{config.applicationCopyright.content}}</span>
-					<a href="" onclick="openHelpdesk(); return false;">
+					<a id="openHelpdesk" href="javascript:">
 						{{i18n('resources.ULisboaThemeResources', 'link.helpdeskReport')}}
 					</a>
 				</p>
 		</footer>
 		<div class="modal fade" id="helpdeskModal"></div>
 		<script>
-			openHelpdesk = function() { 
+      $("#openHelpdesk").on("click", function(){
+        openHelpdesk();
+        return false;
+      });
+			openHelpdesk = function() {
 				$('#helpdeskModal').load('{{contextPath}}/themes/{{school-theme}}/helpdeskReport.jsp');
 				$('#helpdeskModal').modal({
 					backdrop: 'static',
@@ -216,11 +220,11 @@
 		</script>
 		{% endblock %}
 	</body>
-	
+
 	<script>
 
 	$(document).ready(function() {
-	
+
 	});
 </script>
 
