@@ -50,6 +50,19 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="priority" class="col-sm-2 control-label"><fmt:message key="label.helpdesk.report.priority" bundle="${lang}"/>:</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline" style="padding-left: 0;">
+                            <input type="radio" name="priority" style="margin: 2px 0 0 0; margin-right: 5px;" id="priority-low" value="LOW" checked required>
+                            <fmt:message key="label.helpdesk.report.priority.low" bundle="${lang}"/>
+                        </label>
+                        <label class="radio-inline" style="padding-left: 0;">
+                            <input type="radio" name="priority" style="margin: 2px 0 0 0; margin-right: 5px;" id="priority-high" value="HIGH" >
+                            <fmt:message key="label.helpdesk.report.priority.high" bundle="${lang}"/>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="attachment" class="col-sm-2 control-label"><fmt:message key="label.helpdesk.report.attachment" bundle="${lang}"/>:</label>
                     <div class="col-sm-10">
                         <div class="alert alert-danger" id="largeFile" style="display: none">
