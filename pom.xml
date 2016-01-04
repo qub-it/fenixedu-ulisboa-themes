@@ -1,13 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.fenixedu.ulisboa</groupId>
 	<artifactId>themes</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-EVA-RC4</version>
 	<packaging>pom</packaging>
 
 	<properties>
-		<ulisboa-themes-version>1.0.0-SNAPSHOT</ulisboa-themes-version>
+		<ulisboa-themes-version>1.0.0-EVA-RC4</ulisboa-themes-version>
 	</properties>
 
 	<modules>
@@ -27,6 +26,10 @@
 			<url>http://nexus.ulisboa.pt:8081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
-
+	<scm>
+			<connection>scm:git:git//github.com:qub-it/fenixedu-ulisboa-themes.git</connection>
+			<url>https://github.com/qub-it/fenixedu-ulisboa-themes</url>
+		  <tag>1.0.0-EVA-RC4</tag>
+  </scm>
 
 </project>

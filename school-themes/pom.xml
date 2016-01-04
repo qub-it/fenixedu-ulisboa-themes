@@ -1,13 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.fenixedu.ulisboa</groupId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0-EVA-RC4</version>
 		<artifactId>themes</artifactId>
 		<relativePath>..</relativePath>
 	</parent>
-	
+
 	<artifactId>school-themes</artifactId>
 	<packaging>pom</packaging>
 
@@ -15,12 +14,12 @@
 		<dependency>
 			<groupId>org.fenixedu.ulisboa</groupId>
 			<artifactId>fenixedu-ulisboa-theme</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>1.0.0-EVA-RC4</version>
 		</dependency>
 	</dependencies>
 
 	<properties>
-		<ulisboa-themes-version>0.0.1-SNAPSHOT</ulisboa-themes-version>
+		<ulisboa-themes-version>1.0.0-EVA-RC4</ulisboa-themes-version>
 	</properties>
 
 	<build>
@@ -28,7 +27,7 @@
 			<plugin>
 				<groupId>org.fenixedu.ulisboa</groupId>
 				<artifactId>ulisboa-theme-configurator</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
+				<version>1.0.0-EVA-RC4</version>
 				<executions>
 					<execution>
 						<goals>
