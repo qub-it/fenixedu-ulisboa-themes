@@ -209,10 +209,10 @@
 <!-- 			</ul> -->
 
 {# EVALUATIONS_MENU #}
-		<ul class="nav nav-pills nav-stacked">
-			<li class="navheader">
-				<strong>{{ i18n("resources.ApplicationResources", "link.evaluation") }}</strong>
-			</li>
+<!-- 		<ul class="nav nav-pills nav-stacked"> -->
+<!-- 			<li class="navheader"> -->
+<!-- 				<strong>{{ i18n("resources.ApplicationResources", "link.evaluation") }}</strong> -->
+<!-- 			</li> -->
 <!-- 			{% if professorship.permissions.evaluationSpecific %} -->
 <!-- 			<li> -->
 <!-- 			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/adHocEvaluationIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}"> -->
@@ -241,15 +241,14 @@
 <!-- 				</a> -->
 <!-- 			</li> -->
 <!-- 			{% endif %} -->
-			{% if professorship.permissions.evaluationFinal %}
-				<li>
-					<!-- NO_CHECKSUM -->
-                	<a href="{{contextPath}}/fenixedu-ulisboa-specifications/evaluation/managemarksheet/teacher/competencecoursemarksheet/{{executionCourse.externalId}}">
-						{{ i18n("resources.AcademicAdminOffice", "label.navheader.marksSheet") }}
-					</a>
-				</li>
-			{% endif %}
-		</ul>
+<!-- 			{% if professorship.permissions.evaluationFinal %} -->
+<!-- 			<li> -->
+<!-- 			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/finalEvaluationIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.finalEvaluation") }} -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			{% endif %} -->
+<!-- 		</ul> -->
 {# /EVALUATIONS_MENU #}
 
 	</div>
