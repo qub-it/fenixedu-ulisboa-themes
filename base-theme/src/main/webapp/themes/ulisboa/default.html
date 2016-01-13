@@ -115,9 +115,11 @@
 		</div>
 		<nav class="col-sm-10 collapse" id="topNav" role="navigation">
 			<ul class="nav navbar-bottom nav-pills nav-menu">
+			{% block topNavItems %}
 			{% lazyFor item in topLevelMenu %}
 				<li class="{% if item == selectedTopLevel %}active{% endif %}"><a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a></li>
 			{% endLazyFor %}
+			{% endblock %}
 				<li class="visible-xs"><a href="{{contextPath}}/logout"><strong>Logout</strong></a></li>
 			</ul>
 		</nav>
@@ -125,6 +127,7 @@
 	<div>
 		{% block mainContainer %}
 		<main class="col-sm-10 col-sm-push-2" role="main">
+			{% block breadcrumb %}
 			<ol class="breadcrumb">
 			{% for item in functionality.pathFromRoot %}
 				<li><a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a></li>
@@ -136,10 +139,12 @@
 					{% endfor %}
 				</span>
 			</ol>
+			{% endblock %}
 			<div id="main-content-wrapper">
 				{{body}}
 			</div>
 		</main>
+		{% block sideMenu %}
 		<div class="col-sm-2 col-sm-pull-10 panel-group" id="accordion">
 		{% if functionality.parent.parent == config.menu %}
 			{% set root = functionality %}
@@ -189,6 +194,7 @@
 			</div>
 		{% endLazyFor %}
 		</div>
+		{% endblock %}
 		{% endblock %}
 	</div>
 		{% block footer %}
