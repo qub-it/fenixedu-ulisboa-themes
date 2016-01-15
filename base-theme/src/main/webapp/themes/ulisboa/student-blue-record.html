@@ -5,6 +5,13 @@
 	{% endif %}
 {% endblock %}
 {% block breadcrumb %}
+			<ol class="breadcrumb">
+				<span class="pull-right">
+					{% for locale in locales %}
+						<a class="locale-changer {% if locale == currentLocale %}active{% endif %}" title="{{locale.displayName}}" onclick="setLang('{{locale}}')">{{locale.language}}</a>
+					{% endfor %}
+				</span>
+			</ol>
 {% endblock %}
 {% block topNavItems %}
 	{% if "true" equals blueRecordCompleted %}
