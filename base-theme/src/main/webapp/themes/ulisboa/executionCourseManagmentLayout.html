@@ -61,10 +61,10 @@
 {# /STICKY_ITEMS_MENU #}
 		
 {# COMMUNICATION_MENU #}
-<!-- 		<ul class="nav nav-pills nav-stacked"> -->
-<!-- 			<li class="navheader"> -->
-<!-- 				<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.communication") }}</strong> -->
-<!-- 			</li> -->
+		<ul class="nav nav-pills nav-stacked">
+			<li class="navheader">
+				<strong>{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.communication") }}</strong>
+			</li>
 <!-- 			{% if professorship.permissions.personalization %} -->
 <!-- 				<li> -->
 <!-- 					NO_CHECKSUM -->
@@ -73,30 +73,30 @@
 <!-- 					</a> -->
 <!-- 				</li> -->
 <!-- 			{% endif %} -->
-<!-- 			{% if executionCourse.site is not empty %} -->
-<!-- 				{% if professorship.permissions.announcements %} -->
-<!-- 					<li> -->
-<!-- 						NO_CHECKSUM -->
-<!-- 						<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/announcements"> -->
-<!-- 							{{ i18n("resources.ApplicationResources", "link.announcements") }} -->
-<!-- 						</a> -->
-<!-- 					</li> -->
-<!-- 				{% endif %} -->
-<!-- 				{% if professorship.permissions.sections %} -->
-<!-- 					<li> -->
-<!-- 						NO_CHECKSUM -->
-<!-- 						<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/pages"> -->
-<!-- 							{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.sections") }} -->
-<!-- 						</a> -->
-<!-- 					</li> -->
-<!-- 				{% endif %} -->
-<!-- 			{% endif %} -->
+			{% if executionCourse.site is not empty %}
+				{% if professorship.permissions.announcements %}
+					<li>
+						<!-- NO_CHECKSUM -->
+						<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/announcements">
+							{{ i18n("resources.ApplicationResources", "link.announcements") }}
+						</a>
+					</li>
+				{% endif %}
+				{% if professorship.permissions.sections %}
+					<li>
+						<!-- NO_CHECKSUM -->
+						<a href="{{contextPath}}/teacher/{{executionCourse.externalId}}/pages">
+							{{ i18n("resources.ApplicationResources", "label.executionCourseManagement.menu.sections") }}
+						</a>
+					</li>
+				{% endif %}
+			{% endif %}
 <!-- 			<li> -->
 <!-- 				<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/executionCourseForumManagement.do?method=viewForuns&executionCourseID="+executionCourse.externalId, session ) }}"> -->
 <!-- 					{{ i18n("resources.ApplicationResources", "link.teacher.executionCourseManagement.foruns") }} -->
 <!-- 				</a> -->
 <!-- 			</li> -->
-<!-- 		</ul> -->
+		</ul>
 {# /COMMUNICATION_MENU #}
 		
 {# COURSE_MANAGEMENT_MENU #}
