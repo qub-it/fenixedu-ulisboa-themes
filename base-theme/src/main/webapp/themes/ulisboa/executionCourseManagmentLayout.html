@@ -73,6 +73,7 @@
 <!-- 					</a> -->
 <!-- 				</li> -->
 <!-- 			{% endif %} -->
+			{% if config.ulisboaPortal.qualityMode %}
 			{% if executionCourse.site is not empty %}
 				{% if professorship.permissions.announcements %}
 					<li>
@@ -90,6 +91,7 @@
 						</a>
 					</li>
 				{% endif %}
+			{% endif %}
 			{% endif %}
 <!-- 			<li> -->
 <!-- 				<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/executionCourseForumManagement.do?method=viewForuns&executionCourseID="+executionCourse.externalId, session ) }}"> -->
