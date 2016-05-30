@@ -14,11 +14,16 @@ import static org.twdata.maven.mojoexecutor.MojoExecutor.version;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UTFDataFormatException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
 import java.util.Enumeration;
@@ -107,6 +112,7 @@ public class ThemeConfigurator extends AbstractMojo {
                             + dependedThemeName + File.separator + "less" + File.separator;
 
             copyBrandingSpecification(brandingSpecification, extractedLessDirectory);
+            copyStaticOverrides();
 
             compileLess(extractedLessDirectory);
 
@@ -223,6 +229,51 @@ public class ThemeConfigurator extends AbstractMojo {
                 is.close();
             }
             fos.close();
+        }
+    }
+
+    public void copyStaticOverrides() throws IOException {
+        final String origin =
+                mavenProject.getBasedir() + File.separator + "src" + File.separator + "main" + File.separator + "webapp"
+                        + File.separator + "themes" + File.separator + mavenProject.getArtifactId() + File.separator;
+        final String destination =
+                mavenProject.getBasedir() + File.separator + "target" + File.separator + "classes" + File.separator + "META-INF"
+                        + File.separator + "resources" + File.separator + "themes" + File.separator
+                        + mavenProject.getArtifactId() + File.separator;
+
+        File f = new File(origin);
+        if (!f.exists()) {
+            getLog().info("No specific resources found for: " + origin);
+            return;
+        }
+        deepCopy(origin, destination, f);
+    }
+
+    private void deepCopy(String origin, String destination, File node) throws IOException {
+        if (node.isDirectory()) {
+            final String newFolderPath = destination + node.getName();
+            final File newFolder = new File(newFolderPath);
+            newFolder.mkdir();
+            File[] children = node.listFiles();
+            if (children.length == 0) {
+                return;
+            }
+            for (File child : children) {
+                deepCopy(origin, destination, child);
+            }
+        } else {
+            final String artifactOriginPath = origin + node.getName();
+            final String artifactDestinationPath = destination + node.getName();
+            final FileOutputStream fos = new FileOutputStream(artifactDestinationPath);
+            Files.copy(Paths.get(artifactOriginPath), fos);
+            getLog().info("Copied specific resource: " + artifactOriginPath);
+
+            if (artifactDestinationPath.endsWith("html")) {
+                final Path layoutPath = Paths.get(artifactDestinationPath);
+                String content = new String(Files.readAllBytes(layoutPath), StandardCharsets.UTF_8);
+                content = content.replaceAll("\\{\\{school-theme\\}\\}", mavenProject.getArtifactId());
+                Files.write(layoutPath, content.getBytes(StandardCharsets.UTF_8));
+            }
         }
     }
 
