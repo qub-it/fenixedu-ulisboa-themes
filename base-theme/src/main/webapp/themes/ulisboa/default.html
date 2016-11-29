@@ -203,7 +203,7 @@
 					<a class="brand" href="http://www.ulisboa.pt/"><img src="{{contextPath}}/themes/{{school-theme}}/img/ul-banner.png" alt="FenixEdu at {{school-theme}}"></a>
 				</div>
 				<p class="col-sm-4">
-					{% if loggedUser == null %}
+					{% if loggedUser == null or not config.ulisboaPortal.supportActive %}
 						{{config.applicationCopyright.content}}
 					{% else %}
 						<span>{{config.applicationCopyright.content}}</span>
