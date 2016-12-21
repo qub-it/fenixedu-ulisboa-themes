@@ -249,6 +249,13 @@
                 	<a href="{{contextPath}}/fenixedu-ulisboa-specifications/evaluation/managemarksheet/teacher/competencecoursemarksheet/{{executionCourse.externalId}}">
 						{{ i18n("resources.AcademicAdminOffice", "label.navheader.marksSheet") }}
 					</a>
+					
+					{% if config.ulisboaPortal.teacherEvaluationsFunctionality is not empty %}
+                	<a href="{{contextPath}}{{config.ulisboaPortal.teacherEvaluationsFunctionality}}{{executionCourse.externalId}}">
+						{{ i18n("resources.ApplicationResources", "link.view.written.evaluations") }}
+					</a>
+					{% endif %}					
+					
 				</li>
 			{% endif %}
 		</ul>
