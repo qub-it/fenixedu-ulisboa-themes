@@ -146,6 +146,11 @@ Locale       | {{locale}}
 		angular.module('errorPageApp', []).controller('ErrorCtrl', ['$scope', '$http', function($scope, $http) {
 			$scope.data = {}; $scope.success = false; $scope.sending = false; $scope.data.userAgent = "{{userAgent}}"; $scope.data.referer = "{{referer}}";
 			$scope.data.functionality = '{{functionality.externalId}}'; $scope.data.exceptionInfo = document.getElementById('exceptionInfo').value;
+			$scope.data.exceptionFullQualifiedName='{{exceptionFullQualifiedName}}';
+			$scope.data.offendingClass='{{offendingClass}}';
+			$scope.data.offendingMethod='{{offendingMethod}}';
+			$scope.data.offendingLine='{{offendingLine}}';
+			$scope.data.exceptionMessage='{{exceptionMessage}}';
 			$scope.sendForm = function() {
 				$scope.sending = true;
 				$http.post('{{contextPath}}/fenixedu-ulisboa-specifications/helpdeskreport/submitReport', $scope.data).then(function () {
