@@ -41,6 +41,7 @@
 	</build>
 
 	<modules>
+		<module>fa</module>
 		<module>fba</module>
 		<module>fc</module>
 		<module>fd</module>
