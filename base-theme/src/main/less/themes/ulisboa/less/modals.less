@@ -137,3 +137,40 @@
 @media (min-width: @screen-md-min) {
   .modal-lg { width: @modal-lg; }
 }
+
+
+// jquery modals
+
+.ui-dialog {
+	border: 1px solid @brand-primary;	
+}
+.ui-dialog-titlebar {
+	background-color: @brand-primary;
+	position: relative;
+}
+
+.ui-dialog-content {
+	background-color: #fff;
+}
+
+.ui-dialog-title {
+	color: contrast(@brand-primary);
+	font-weight: bold;
+    font-size: 16px;
+    padding-left: 8px;
+}
+.ui-dialog-titlebar-close {
+	position: absolute;
+    right: .3em;
+    top: 50%;
+    width: 20px;
+    margin: -10px 0 0 0;
+    padding: 1px;
+    height: 20px;
+    background-image: url("https://code.jquery.com/ui/1.12.1/themes/base/images/ui-icons_444444_256x240.png");
+    background-position: -96px -128px;
+}
+
+.ui-dialog-titlebar .ui-button-text {
+ display: none;
+}

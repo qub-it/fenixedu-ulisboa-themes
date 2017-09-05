@@ -202,17 +202,20 @@
 				<div class="col-sm-2 text-center">
 					<a class="brand" href="http://www.ulisboa.pt/"><img src="{{contextPath}}/themes/{{school-theme}}/img/ul-banner.png" alt="FenixEdu at {{school-theme}}"></a>
 				</div>
-				<p class="col-sm-4">
-					{% if loggedUser == null or not config.ulisboaPortal.supportActive %}
-						{{config.applicationCopyright.content}}
-					{% else %}
+				<p class="col-sm-5">
 						<span>{{config.applicationCopyright.content}}</span>
+					{% if loggedUser != null and config.ulisboaPortal.supportActive %}
 						<span>
 							<a id="openHelpdesk" href="javascript:">{{i18n('resources.ULisboaThemeResources', 'link.helpdeskReport')}}</a>
 						</span>
+						<span>
 						<a href="{{contextPath}}/support">
 							{{i18n('resources.ULisboaThemeResources', 'link.helpDesk.management')}}
 						</a>
+						</span>
+					{% endif %}
+					{% if loggedUser != null and config.ulisboaPortal.documentationActive %}
+						<a id="openDocumentation" href='javascript:openDocumentationDialog()'>{{i18n('resources.ULisboaThemeResources', 'link.documentation')}}</a>
 					{% endif %}
 				</p>
 				<div class="col-sm-2 text-center">
@@ -220,11 +223,26 @@
 				</div>
 		</footer>
 		<div class="modal fade" id="helpdeskModal"></div>
+		
+		{% if loggedUser != null and config.ulisboaPortal.documentationActive %}
+			<div id="docHook" style="display: none" title="{{ functionality.documentation != null and functionality.documentation.titleDefined ? functionality.documentation.title : functionality.title.content }}">
+				{% if functionality.documentation != null %}
+				<iframe class="google-viewer google-viewer-borderless" width="1024px" height="900px" src="{{ functionality.documentation.url }}"></iframe>		
+				{%else %}
+				<div class="alert alert-warning">
+			    {{ i18n('resources.ULisboaThemeResources', "label.noDocumentationForFunctionality") }}
+				</div>
+				{% endif %}
+				
+			</div>
+		{% endif %}
+		
 		<script>
       $("#openHelpdesk").on("click", function(){
         openHelpdesk();
         return false;
       });
+         
 			openHelpdesk = function() {
 				$('#helpdeskModal').load('{{contextPath}}/themes/{{school-theme}}/helpdeskReport.jsp');
 				$('#helpdeskModal').modal({
@@ -233,7 +251,15 @@
 				});
 				window.current$functionality = '{{functionality.externalId}}';
 			};
+		
+			{% if loggedUser != null and config.ulisboaPortal.documentationActive %}
+			function openDocumentationDialog(){
+				$("#docHook").clone().dialog({"width": "1024px"})
+			}
+			{% endif %}
+			
 		</script>
+		
 		{% endblock %}
 	</body>
 
