@@ -203,18 +203,18 @@
 					<a class="brand" href="http://www.ulisboa.pt/"><img src="{{contextPath}}/themes/{{school-theme}}/img/ul-banner.png" alt="FenixEdu at {{school-theme}}"></a>
 				</div>
 				<p class="col-sm-5">
-						<span>{{config.applicationCopyright.content}}</span>
 					{% if loggedUser != null and config.ulisboaPortal.supportActive %}
 						<span>
 							<a id="openHelpdesk" href="javascript:">{{i18n('resources.ULisboaThemeResources', 'link.helpdeskReport')}}</a>
 						</span>
-						<span>
+
 						<a href="{{contextPath}}/support">
 							{{i18n('resources.ULisboaThemeResources', 'link.helpDesk.management')}}
 						</a>
-						</span>
 					{% endif %}
 					{% if loggedUser != null and config.ulisboaPortal.documentationActive %}
+						<span>
+						</span>
 						<a id="openDocumentation" href='javascript:openDocumentationDialog()'>{{i18n('resources.ULisboaThemeResources', 'link.documentation')}}</a>
 					{% endif %}
 				</p>
