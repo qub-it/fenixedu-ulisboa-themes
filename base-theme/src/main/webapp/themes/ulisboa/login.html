@@ -55,7 +55,7 @@
   		$.post('{{contextPath}}/api/bennu-core/profile/extension/loginExtension', {username: username, password: password}).done(function (data) {
   			var url = $('input[type=hidden]').val() || '{{contextPath}}/';
   			$('.alert-login').text("{{i18n('resources.BennuPortalResources', 'label.welcome')}} " + data.name + '!'); window.location = url;
-  		}).error(function (error) {
+  		}).fail(function (error) {
   			$('.alert').show();
   			$('form').show();
   			$('.alert-login').hide();
