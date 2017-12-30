@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.fenixedu.ulisboa</groupId>
-		<version>1.0.1</version>
+		<version>1.0.1-NEW-DEV</version>
 		<artifactId>themes</artifactId>
 		<relativePath>..</relativePath>
 	</parent>
@@ -15,12 +15,12 @@
 		<dependency>
 			<groupId>org.fenixedu.ulisboa</groupId>
 			<artifactId>fenixedu-ulisboa-theme</artifactId>
-			<version>1.0.1</version>
+			<version>1.0.1-NEW-DEV</version>
 		</dependency>
 	</dependencies>
 
 	<properties>
-		<ulisboa-themes-version>0.0.1-SNAPSHOT</ulisboa-themes-version>
+		<ulisboa-themes-version>0.0.1-NEW-DEV</ulisboa-themes-version>
 	</properties>
 
 	<build>
@@ -28,7 +28,7 @@
 			<plugin>
 				<groupId>org.fenixedu.ulisboa</groupId>
 				<artifactId>ulisboa-theme-configurator</artifactId>
-				<version>1.0.1</version>
+				<version>1.0.1-NEW-DEV</version>
 				<executions>
 					<execution>
 						<goals>
