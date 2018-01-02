@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<ulisboa-themes-version>1.0.0-SNAPSHOT</ulisboa-themes-version>
+		<ulisboa-themes-version>${project.version}</ulisboa-themes-version>
 	</properties>
 
 	<modules>
