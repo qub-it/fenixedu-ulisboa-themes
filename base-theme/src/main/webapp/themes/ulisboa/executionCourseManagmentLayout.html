@@ -13,7 +13,9 @@
 		</span>
 	</ol>
 	<div id="main-content-wrapper">
-		{{body}}
+        {% autoescape false %}
+            {{ body }}
+        {% endautoescape %}
 	</div>
 </main>
 <nav class="col-sm-2 col-sm-pull-10" id="context">

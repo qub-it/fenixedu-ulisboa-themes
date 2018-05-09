@@ -141,7 +141,9 @@
 			</ol>
 			{% endblock %}
 			<div id="main-content-wrapper">
-				{{body}}
+                {% autoescape false %}
+                    {{ body }}
+                {% endautoescape %}
 			</div>
 		</main>
 		{% block sideMenu %}
@@ -153,7 +155,7 @@
 		{% endif %}
 		{% lazyFor item in root.parent.userMenuStream %}
 			 <div class="panel panel-default">
-				{% if item.userMenu is empty %}
+				{% if item.userMenuStream is empty %}
 				    <div class="panel-heading">
                         <h4 class="panel-title">
                             <a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a>

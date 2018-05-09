@@ -3,7 +3,9 @@
 {% block mainContainer %}
 		<main class="col-sm-12" style="padding-top: 0">
 			<div id="main-content-wrapper" style="min-height: 600px">
-				{{body}}
+                {% autoescape false %}
+                    {{ body }}
+                {% endautoescape %}
 			</div>
 		</main>
 {% endblock %}
