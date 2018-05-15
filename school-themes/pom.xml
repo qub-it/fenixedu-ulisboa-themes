@@ -56,5 +56,6 @@
 		<module>igot</module>
 		<module>iscsp</module>
 		<module>ul</module>
+		<module>isa</module>
 	</modules>
 </project>
