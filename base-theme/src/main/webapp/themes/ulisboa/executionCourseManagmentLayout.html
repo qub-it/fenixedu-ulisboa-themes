@@ -26,7 +26,7 @@
 {% endif %}
 {% lazyFor item in root.parent.userMenuStream %}
 	<ul class="nav nav-pills nav-stacked">
-		{% if item.userMenu is empty %}
+		{% if item.userMenuStream is empty %}
 			<a href="{{contextPath}}{{item.fullPath}}"><li class="navheader"><strong>{{item.title.content}}</strong></li></a>
 		{% else %}
 			<li class="navheader"><strong>{{item.title.content}}</strong></li>
