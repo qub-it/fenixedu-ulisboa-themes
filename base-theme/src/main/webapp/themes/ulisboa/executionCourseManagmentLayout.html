@@ -217,13 +217,30 @@
 			<li class="navheader">
 				<strong>{{ i18n("resources.ApplicationResources", "link.evaluation") }}</strong>
 			</li>
-<!-- 			{% if professorship.permissions.evaluationSpecific %} -->
-<!-- 			<li> -->
-<!-- 			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/adHocEvaluationIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}"> -->
-<!-- 					{{ i18n("resources.ApplicationResources", "link.adHocEvaluations") }} -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-<!-- 			{% endif %} -->
+			{% if professorship.permissions.evaluationFinal %}
+				<li>
+					<!-- NO_CHECKSUM -->
+                	<a href="{{contextPath}}/fenixedu-ulisboa-specifications/evaluation/managemarksheet/teacher/competencecoursemarksheet/{{executionCourse.externalId}}">
+						{{ i18n("resources.AcademicAdminOffice", "label.navheader.marksSheet") }}
+					</a>
+					
+					{% if config.ulisboaPortal.teacherEvaluationsFunctionality is not empty %}
+                	<a href="{{contextPath}}{{config.ulisboaPortal.teacherEvaluationsFunctionality}}{{executionCourse.externalId}}">
+						{{ i18n("resources.ApplicationResources", "link.view.written.evaluations") }}
+					</a>
+					{% endif %}					
+					
+				</li>
+			{% endif %}
+			{% if professorship.permissions.evaluationSpecific %}
+				{% if config.ulisboaPortal.teacherAdHocEvaluationsAvailable %}
+				<li>
+				    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/adHocEvaluationIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}">
+						{{ i18n("resources.ApplicationResources", "link.adHocEvaluations") }}
+					</a>
+				</li>
+				{% endif %}
+			{% endif %}
 <!-- 			{% if professorship.permissions.evaluationProject %} -->
 <!-- 			<li> -->
 <!-- 			    <a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/evaluation/projectsIndex.faces?executionCourseID="+executionCourse.externalId, session ) }}"> -->
@@ -245,21 +262,11 @@
 <!-- 				</a> -->
 <!-- 			</li> -->
 <!-- 			{% endif %} -->
-			{% if professorship.permissions.evaluationFinal %}
-				<li>
-					<!-- NO_CHECKSUM -->
-                	<a href="{{contextPath}}/fenixedu-ulisboa-specifications/evaluation/managemarksheet/teacher/competencecoursemarksheet/{{executionCourse.externalId}}">
-						{{ i18n("resources.AcademicAdminOffice", "label.navheader.marksSheet") }}
-					</a>
-					
-					{% if config.ulisboaPortal.teacherEvaluationsFunctionality is not empty %}
-                	<a href="{{contextPath}}{{config.ulisboaPortal.teacherEvaluationsFunctionality}}{{executionCourse.externalId}}">
-						{{ i18n("resources.ApplicationResources", "link.view.written.evaluations") }}
-					</a>
-					{% endif %}					
-					
-				</li>
-			{% endif %}
+<!-- 			<li> -->
+<!-- 				<a href="{{contextPath}}{{ injectCheckSumInUrl (contextPath, "/teacher/markSheetManagement.do?method=evaluationIndex&executionCourseID="+executionCourse.externalId, session ) }}"> -->
+<!-- 					{{ i18n("resources.ApplicationResources", "link.evaluation") }} -->
+<!-- 				</a> -->
+<!-- 			</li>			 -->
 		</ul>
 {# /EVALUATIONS_MENU #}
 
