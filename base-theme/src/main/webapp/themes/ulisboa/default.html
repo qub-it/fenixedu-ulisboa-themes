@@ -205,7 +205,7 @@
 					<a class="brand" href="http://www.ulisboa.pt/"><img src="{{contextPath}}/themes/{{school-theme}}/img/ul-banner.png" alt="FenixEdu at {{school-theme}}"></a>
 				</div>
 				<p class="col-sm-5">
-					{% if loggedUser != null and config.ulisboaPortal.supportActive %}
+					{% if loggedUser != null and config.ulisboaPortal.supportActive and config.ulisboaPortal.supportAccessibleToUser%}
 						<span>
 							<a id="openHelpdesk" href="javascript:">{{i18n('resources.ULisboaThemeResources', 'link.helpdeskReport')}}</a>
 						</span>
