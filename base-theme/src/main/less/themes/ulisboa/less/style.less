@@ -51,10 +51,15 @@ input {
 }
 
 header {
-    background: transparent;
+    background-color: @header-bg;
+    background: @header-bg-gradient;
     border-bottom: 1px solid @body-bg;
     position: relative;
-    margin-top: 20px;
+    
+    padding-top:15px;
+	padding-bottom: 5px;
+	
+    //margin-top: 20px;
 
     & > * {
         padding-left: 0!important;
@@ -71,7 +76,7 @@ header {
                 background: @gray-lighter;
                 color: #222;
                 border-radius: 1px;
-                border: 1px solid @body-bg;
+                border: 1px solid @header-border;
                 padding: 8px 13px;
             }
             & > a:hover {
@@ -100,7 +105,7 @@ header {
 }
 
 header .nav li.active a, header .nav li.active a:hover {
-    background: @gray-light;
+    background: @header-top-menu-active;
     color: @body-bg;
 }
 nav#context, main {
@@ -221,8 +226,10 @@ main &>.breadcrumb a:hover, footer a:hover {
 }
 
 footer {
+	background: @footer-bg-gradient;
+	background-color: @footer-bg;
     font: normal 400 @font-size-small/1.2 "Helvetica Neue", sans-serif;
-    color: @gray-light;
+    color: @footer-link-color;
     clear: both;
     padding: 40px 20px 40px 0;
     & > p {
@@ -233,11 +240,11 @@ footer {
     }
     img {width: 150px; max-width: 100%}
     a {
-        color: @gray-light;
+        color: @footer-link-color;
         clear: both;
         margin-left: 15px;
         &:hover {
-        color: @brand-primary;
+        color: @footer-link-hover-color;
         }
     }
     .brand { margin-left: 0;}
