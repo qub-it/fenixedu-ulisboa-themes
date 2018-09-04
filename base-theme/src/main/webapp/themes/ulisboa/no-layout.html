@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie ie9"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html dir="ltr" lang="{{currentLocale}}"> <!--<![endif]-->
+  <head>
+
+	<!-- Basic Page Needs -->
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Language" content="{{currentLocale.language}}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Description" content="FenixEdu™ is an open-source academic information platform." />
+	<meta name="Keywords" content="FenixEdu, open-source, academic, information, platform, academic administration, higher education, e-learning" />
+	<meta name="Language" content="{{currentLocale}}" />
+	<meta name="Robots" content="all" />
+
+	{% block copyrightMeta %}
+    <!--
+    <meta name="Author" content="FenixEdu" />
+    <meta name="Email" content="hello@fenixedu.org" />
+    <meta name="Copyright" content="Técnico Lisboa - Instituto Superior Técnico" />
+    <meta name="Distribution" content="Global" />
+    <meta name="Rating" content="General" />
+    -->
+    {% endblock copyrightMeta %}
+
+    <!-- OpenGraph Specific Metas -->
+    {% block openGraphMeta %}
+    <!--
+    <meta property="og:title" content="FenixEdu™" />
+    <meta property="og:type" content="application" />
+    <meta property="og:url" content="http://www.fenixedu.org" />
+    <meta property="og:site_name" content="FenixEdu" />
+    <meta property="og:description" content="FenixEdu Learning is an open-source academic information platform." />
+    <meta property="fb:profile_id" content="379238245509413" />
+    -->
+    {% endblock openGraphMeta %}
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5">
+
+    <title>{% block title %}{{ functionality.title.content }} · {{ selectedTopLevel.title.content }}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+	<link rel="stylesheet" type="text/css" media="screen" href="{{contextPath}}/themes/{{school-theme}}/css/general.css">
+    <link href="{{contextPath}}/themes/{{school-theme}}/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
+	<script src="{{contextPath}}/themes/{{school-theme}}/js/bootstrap.min.js"></script>
+	<script> setLang = function(l) {
+		$.post('{{contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).always(function() { location.reload(); });
+	}
+	</script>
+
+	<!-- Favicons & TouchIcons-->
+	<link rel="shortcut icon" type="image/x-icon" href="{{contextPath}}/api/bennu-portal/configuration/favicon">
+
+  </head>
+
+	<body>
+		<div id="main-content-wrapper">
+		    {% autoescape false %}
+		        {{ body }}
+		    {% endautoescape %}
+		</div>
+	</body>
+
+	<script>
+	$(document).ready(function() {
+
+	});
+	</script>
+
+</html>
