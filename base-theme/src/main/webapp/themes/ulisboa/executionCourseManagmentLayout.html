@@ -217,6 +217,7 @@
 <!-- 			</ul> -->
 
 {# EVALUATIONS_MENU #}
+		{% if config.ulisboaPortal.teacherEvaluationSectionAvailable %}
 		<ul class="nav nav-pills nav-stacked">
 			<li class="navheader">
 				<strong>{{ i18n("resources.ApplicationResources", "link.evaluation") }}</strong>
@@ -272,6 +273,7 @@
 <!-- 				</a> -->
 <!-- 			</li>			 -->
 		</ul>
+		{% endif %}
 {# /EVALUATIONS_MENU #}
 
 {% lazyFor item in root.userMenuStream %}
