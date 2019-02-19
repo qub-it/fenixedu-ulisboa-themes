@@ -55,6 +55,7 @@
 		<module>ie</module>
 		<module>igot</module>
 		<module>iscsp</module>
+		<module>iseg</module>
 		<module>ul</module>
 		<module>isa</module>
 	</modules>
