@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie ie9"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html dir="ltr" lang="{{currentLocale}}"> <!--<![endif]-->
+  <head>
+
+	<!-- Basic Page Needs -->
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Language" content="{{currentLocale.language}}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Description" content="FenixEdu™ is an open-source academic information platform." />
+	<meta name="Keywords" content="FenixEdu, open-source, academic, information, platform, academic administration, higher education, e-learning" />
+	<meta name="Language" content="{{currentLocale}}" />
+	<meta name="Robots" content="all" />
+
+	{% block copyrightMeta %}
+    <!--
+    <meta name="Author" content="FenixEdu" />
+    <meta name="Email" content="hello@fenixedu.org" />
+    <meta name="Copyright" content="Técnico Lisboa - Instituto Superior Técnico" />
+    <meta name="Distribution" content="Global" />
+    <meta name="Rating" content="General" />
+    -->
+    {% endblock copyrightMeta %}
+
+    <!-- OpenGraph Specific Metas -->
+    {% block openGraphMeta %}
+    <!--
+    <meta property="og:title" content="FenixEdu™" />
+    <meta property="og:type" content="application" />
+    <meta property="og:url" content="http://www.fenixedu.org" />
+    <meta property="og:site_name" content="FenixEdu" />
+    <meta property="og:description" content="FenixEdu Learning is an open-source academic information platform." />
+    <meta property="fb:profile_id" content="379238245509413" />
+    -->
+    {% endblock openGraphMeta %}
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5">
+
+    <title>{% block title %}{{ functionality.title.content }} · {{ selectedTopLevel.title.content }}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+	<link rel="stylesheet" type="text/css" media="screen" href="{{contextPath}}/themes/{{school-theme}}/css/general.css">
+    <link href="{{contextPath}}/themes/{{school-theme}}/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
+	<script src="{{contextPath}}/themes/{{school-theme}}/js/bootstrap.min.js"></script>
+	<script> setLang = function(l) {
+		$.post('{{contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).always(function() { location.reload(); });
+	}
+	</script>
+
+	<!-- Favicons & TouchIcons-->
+	<link rel="shortcut icon" type="image/x-icon" href="{{contextPath}}/api/bennu-portal/configuration/favicon">
+
+  </head>
+
+  <body>
+  	{% block topbar %}
+	<!-- Bar -->
+	<div class="navbar navbar-inverse hidden-xs fenixedu-bar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{{contextPath}}/" target="_blank">{{config.applicationTitle.content}}</a></li>
+			</div>
+
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav" >
+					<li class="btn-warning" style="font-weight: bold;">
+					{% if config.ulisboaPortal.qualityMode %}
+								<a>Ambiente de Qualidade: As alterações realizadas serão perdidas na próxima actualização</a>
+					{% endif %}
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+				<li></li>
+					{% if loggedUser == null %}
+						<li><a href="{{contextPath}}/login">Login</a></li>
+					{% else %}
+						<li><a>{{loggedUser.profile.displayName}}</a></li>
+						{% if devMode %}
+							<li class="devmode active"><a>Debug Mode</a></li>
+						{% endif %}
+						<li class="active"><a href="{{contextPath}}/logout">Logout</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+
+	<header class="clearfix" role="banner">
+		<div class="col-sm-2 logo-container text-center" style="padding-bottom: 5px;">
+			<button type="button" class="navbar-toggle hamburger" data-toggle="collapse" data-target="#topNav">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			{% if config.logoLinkUrl is empty %}
+				<img class="organizationLogo" src="{{contextPath}}/api/bennu-portal/configuration/logo" title="{{config.logoTooltip}}" />
+			{% else %}
+				<a href="{{config.logoLinkUrl}}" target="_blank">
+					<img class="organizationLogo" src="{{contextPath}}/api/bennu-portal/configuration/logo" title="{{config.logoTooltip}}" />
+				</a>
+			{% endif %}
+		</div>
+		<nav class="col-sm-10 collapse" id="topNav" role="navigation">
+			<ul class="nav navbar-bottom nav-pills nav-menu">
+			{% block topNavItems %}
+			{% lazyFor item in topLevelMenu %}
+				<li class="{% if item == selectedTopLevel %}active{% endif %}"><a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a></li>
+			{% endLazyFor %}
+			{% endblock %}
+				<li class="visible-xs"><a href="{{contextPath}}/logout"><strong>Logout</strong></a></li>
+			</ul>
+		</nav>
+	</header>
+	<div>
+		{% block mainContainer %}
+		<main class="col-sm-10 col-sm-push-2" role="main">
+			{% block breadcrumb %}
+			<ol class="breadcrumb">
+			{% for item in functionality.pathFromRoot %}
+				<li><a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a></li>
+			{% endfor %}
+
+				<span class="pull-right">
+					{% for locale in locales %}
+						<a class="locale-changer {% if locale == currentLocale %}active{% endif %}" title="{{locale.displayName}}" onclick="setLang('{{locale}}')">{{locale.language}}</a>
+					{% endfor %}
+				</span>
+			</ol>
+			{% endblock %}
+			<div id="main-content-wrapper">
+                {% autoescape false %}
+                    {{ body }}
+                {% endautoescape %}
+			</div>
+		</main>
+		{% block sideMenu %}
+		<div class="col-sm-2 col-sm-pull-10 panel-group" id="accordion">
+		{% if functionality.parent.parent == config.menu %}
+			{% set root = functionality %}
+		{% else %}
+			{% set root = functionality.parent %}
+		{% endif %}
+		{% lazyFor item in root.parent.userMenuStream %}
+			 <div class="panel panel-default">
+				{% if item.userMenuStream is empty %}
+				    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a>
+                        </h4>
+                    </div>
+				{% else %}
+					<div class="panel-heading">
+                        <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{item.externalId}}">{{item.title.content}}</a>
+                        </h4>
+                    </div>
+					{% if functionality.parent == item %}
+					<div id="collapse{{item.externalId}}" class="panel-collapse collapse in">
+					{% else %}
+						{% if functionality.parent.parent == item %}
+					<div id="collapse{{item.externalId}}" class="panel-collapse collapse in">
+						{% else %}
+					<div id="collapse{{item.externalId}}" class="panel-collapse collapse ">
+						{% endif %}
+					{% endif %}
+						<div class="panel-body" style="margin-bottom:-0px;">
+							<table class="table">
+						{% lazyFor child in item.userMenuStream %}
+							{%if child == functionality %}
+								<tr class="danger">
+							{%else%}
+								<tr >
+							{%endif%}
+                                    <td>
+                                        <span class="glyphicon glyphicon-th text-primary"></span> <a href="{{contextPath}}{{child.fullPath}}">{{child.title.content}}</a></a>
+                                    </td>
+                                </tr>
+						{% endLazyFor %}
+							</table>
+                        </div>
+                    </div>
+				{% endif %}
+			</div>
+		{% endLazyFor %}
+		</div>
+		{% endblock %}
+		{% endblock %}
+	</div>
+		{% block footer %}
+		<footer class="clearfix" role="contentinfo" >
+		<!-- footer content -->
+		</footer>
+		<div class="modal fade" id="helpdeskModal"></div>
+		
+		{% if loggedUser != null and config.ulisboaPortal.documentationActive %}
+			<div id="docHook" style="display: none" title="{{ functionality.documentation != null and functionality.documentation.titleDefined ? functionality.documentation.title : functionality.title.content }}">
+				{% if functionality.documentation != null %}
+				<iframe class="google-viewer google-viewer-borderless" width="1024px" height="900px" src="{{ functionality.documentation.url }}"></iframe>		
+				{%else %}
+				<div class="alert alert-warning">
+			    {{ i18n('resources.ULisboaThemeResources', "label.noDocumentationForFunctionality") }}
+				</div>
+				{% endif %}
+				
+			</div>
+		{% endif %}
+		
+		<script>
+      $("#openHelpdesk").on("click", function(){
+        openHelpdesk();
+        return false;
+      });
+         
+			openHelpdesk = function() {
+				$('#helpdeskModal').load('{{contextPath}}/themes/{{school-theme}}/helpdeskReport.jsp');
+				$('#helpdeskModal').modal({
+					backdrop: 'static',
+					keyboard: false
+				});
+				window.current$functionality = '{{functionality.externalId}}';
+			};
+		
+			{% if loggedUser != null and config.ulisboaPortal.documentationActive %}
+			function openDocumentationDialog(){
+				$("#docHook").clone().dialog({"width": "1024px"})
+			}
+			{% endif %}
+			
+		</script>
+		
+		{% endblock %}
+	</body>
+
+	<script>
+
+	$(document).ready(function() {
+
+	});
+</script>
+
+
+</html>

@@ -104,6 +104,12 @@
 			<version>${ulisboa-themes-version}</version>
 			<artifactId>isa-theme</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<version>${ulisboa-themes-version}</version>
+			<artifactId>noschool-theme</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

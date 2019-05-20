@@ -58,5 +58,6 @@
 		<module>iseg</module>
 		<module>ul</module>
 		<module>isa</module>
+		<module>noschool</module>
 	</modules>
 </project>
