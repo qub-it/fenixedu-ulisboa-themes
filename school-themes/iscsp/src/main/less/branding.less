@@ -1,16 +1,16 @@
 // variables.less | publicPages.less
-@brand-primary:         #8a191d;
-@body-bg:               lighten(@brand-primary, 64%);
+@brand-primary:         #3a4149;
+@body-bg:               #f6f4ed;
 
-@header-bg: transparent;
-@header-border: @body-bg;
-@header-bg-gradient: transparent;
-@header-top-menu-active: @gray-light;
+@header-bg: #3a4149;
+@header-border: @brand-primary;
+@header-bg-gradient: #3a4149;
+@header-top-menu-active: #DCBD73;
 @footer-bg:	transparent;
-@footer-bg-gradient:	transparent;
-@footer-link-color: @gray-light;
-@footer-link-hover-color: @brand-primary;
-@side-menu-active: #f2dede;
+@footer-bg-gradient: transparent;
+@footer-link-color: @brand-primary;
+@footer-link-hover-color: @header-top-menu-active;
+@side-menu-active: @header-top-menu-active;
 
 // publicPages.less
-@selected-item-bg:		lighten(@brand-primary, 5%);
+@selected-item-bg:	@body-bg;
