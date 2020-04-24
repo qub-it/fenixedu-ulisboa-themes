@@ -55,7 +55,7 @@
     <script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
 	<script src="{{contextPath}}/themes/{{school-theme}}/js/bootstrap.min.js"></script>
 	<script> setLang = function(l) {
-        $.post('/fenix/api/bennu-core/profile/locale/' + l.replace('_', '-')).always(function() {
+        $.post('{{contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).always(function() {
             
             {% if functionality.provider != "uiLayer" %}
                 location.reload();
