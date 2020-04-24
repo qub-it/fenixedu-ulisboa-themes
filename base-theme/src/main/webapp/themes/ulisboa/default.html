@@ -55,8 +55,22 @@
     <script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
 	<script src="{{contextPath}}/themes/{{school-theme}}/js/bootstrap.min.js"></script>
 	<script> setLang = function(l) {
-		$.post('{{contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).always(function() { location.reload(); });
-	}
+        $.post('/fenix/api/bennu-core/profile/locale/' + l.replace('_', '-')).always(function() {
+            
+            {% if functionality.provider != "uiLayer" %}
+                location.reload();
+            {% else %}
+                var indexOfLocale = location.href.lastIndexOf("/locale=");
+                if(indexOfLocale > 0){
+                    window.location.href = location.href.substring(0,indexOfLocale) + '/locale=' + l.replace('_', '-');
+                }else{
+                    window.location.href = location.href + '/locale=' + l.replace('_', '-');
+                }
+                location.reload();
+            {% endif %}
+            
+        });
+    }
 	</script>
 
 	<!-- Favicons & TouchIcons-->
