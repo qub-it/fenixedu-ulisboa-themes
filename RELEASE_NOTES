@@ -1,3 +1,5 @@
+- Bug fix: Fix reload bug in locale change request
+
 2.3.6 (24-04-2020)
 - Bug fix: Fix context path on locale change request
 
