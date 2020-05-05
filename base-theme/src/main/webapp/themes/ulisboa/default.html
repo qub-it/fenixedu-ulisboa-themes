@@ -226,11 +226,6 @@
 							{{i18n('resources.ULisboaThemeResources', 'link.helpDesk.management')}}
 						</a>
 					{% endif %}
-					{% if loggedUser != null and config.ulisboaPortal.documentationActive %}
-						<span>
-						</span>
-						<a id="openDocumentation" href='javascript:openDocumentationDialog()'>{{i18n('resources.ULisboaThemeResources', 'link.documentation')}}</a>
-					{% endif %}
 				</p>
 				<div class="col-sm-2 text-center">
 					<img src="{{contextPath}}/themes/{{school-theme}}/img/sama-bw.png" alt="FenixEdu at {{school-theme}}">
@@ -238,18 +233,6 @@
 		</footer>
 		<div class="modal fade" id="helpdeskModal"></div>
 		
-		{% if loggedUser != null and config.ulisboaPortal.documentationActive %}
-			<div id="docHook" style="display: none" title="{{ functionality.documentation != null and functionality.documentation.titleDefined ? functionality.documentation.title : functionality.title.content }}">
-				{% if functionality.documentation != null %}
-				<iframe class="google-viewer google-viewer-borderless" width="1024px" height="900px" src="{{ functionality.documentation.url }}"></iframe>		
-				{%else %}
-				<div class="alert alert-warning">
-			    {{ i18n('resources.ULisboaThemeResources', "label.noDocumentationForFunctionality") }}
-				</div>
-				{% endif %}
-				
-			</div>
-		{% endif %}
 		
 		<script>
       $("#openHelpdesk").on("click", function(){
@@ -265,13 +248,7 @@
 				});
 				window.current$functionality = '{{functionality.externalId}}';
 			};
-		
-			{% if loggedUser != null and config.ulisboaPortal.documentationActive %}
-			function openDocumentationDialog(){
-				$("#docHook").clone().dialog({"width": "1024px"})
-			}
-			{% endif %}
-			
+					
 		</script>
 		
 		{% endblock %}
