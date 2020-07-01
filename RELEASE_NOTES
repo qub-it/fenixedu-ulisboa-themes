@@ -1,4 +1,6 @@
 2.6.0 (01-07-2020)
+- New feature: Execution course management layout, without hard-coded functionalities
+
 2.5.0 (08-05-2020)
 - Refactor: Changing place where support property is checked
 
