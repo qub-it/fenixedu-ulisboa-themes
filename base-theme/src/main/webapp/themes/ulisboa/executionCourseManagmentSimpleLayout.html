@@ -1,0 +1,71 @@
+{% extends "{{school-theme}}/default" %}
+{% block mainContainer %}
+<main class="col-sm-10 col-sm-push-2" role="main">
+	<ol class="breadcrumb">
+	{% for item in functionality.pathFromRoot %}
+		<li><a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a></li>
+	{% endfor %}
+
+		<span class="pull-right">
+			{% for locale in locales %}
+				<a class="locale-changer {% if locale == currentLocale %}active{% endif %}" title="{{locale.displayName}}" onclick="setLang('{{locale}}')">{{locale.language}}</a>
+			{% endfor %}
+		</span>
+	</ol>
+	<div id="main-content-wrapper">
+        {% autoescape false %}
+            {{ body }}
+        {% endautoescape %}
+	</div>
+</main>
+<nav class="col-sm-2 col-sm-pull-10" id="context">
+
+{% if functionality.parent.parent == config.menu %}
+	{% set root = functionality.parent %}
+{% else %}
+	{% set root = functionality.pathFromRoot | first %}
+{% endif %}
+
+{% lazyFor item in root.userMenuStream %}
+	{% if item.path != "_execution-course-functionalities" %}
+		<ul class="nav nav-pills nav-stacked">
+			{% if item.userMenuStream is empty %}
+				<a href="{{contextPath}}{{item.fullPath}}"><li class="navheader"><strong>{{item.title.content}}</strong></li></a>
+			{% else %}
+				<li class="navheader"><strong>{{item.title.content}}</strong></li>
+				{% lazyFor child in item.userMenuStream %}
+					<li><a href="{{contextPath}}{{child.fullPath}}">{{child.title.content}}</a></li>
+				{% endLazyFor %}
+			{% endif %}
+		</ul>
+	{% endif %}
+{% endLazyFor %}
+{% if executionCourse is not empty %}
+<ul class="nav nav-pills nav-stacked nav-group-contextualized-header">
+	<li class="navheader">
+		<strong>{{executionCourse.nameI18N.content}}</strong>
+	</li>
+</ul>
+	<div class="nav-group-contextualized">
+
+{% lazyFor item in root.userMenuStream %}
+	{% if item.path == "_execution-course-functionalities" %}
+		{% lazyFor subItem in item.userMenuStream %}
+			<ul class="nav nav-pills nav-stacked">
+				{% if subItem.userMenuStream is empty %}
+					<a href="{{contextPath}}{{subItem.fullPath}}?executionCourseID={{executionCourse.externalId}}&executionCourseId={{executionCourse.externalId}}"><li class="navheader"><strong>{{subItem.title.content}}</strong></li></a>
+				{% else %}
+					<li class="navheader"><strong>{{subItem.title.content}}</strong></li>
+					{% lazyFor child in subItem.userMenuStream %}
+						<li><a href="{{contextPath}}{{child.fullPath}}?executionCourseID={{executionCourse.externalId}}&executionCourseId={{executionCourse.externalId}}">{{child.title.content}}</a></li>
+					{% endLazyFor %}
+				{% endif %}
+			</ul>		
+		{% endLazyFor %}
+	{% endif %}
+{% endLazyFor %}
+
+	</div>
+{% endif %}
+</nav>
+{% endblock %}
