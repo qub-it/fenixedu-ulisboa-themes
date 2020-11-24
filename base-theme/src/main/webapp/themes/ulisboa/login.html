@@ -35,7 +35,7 @@
         <form method="POST" class="login-form">
           <input type="hidden" name="callback" value="{{callback}}" />
 
-          <input type="text" name="username" autocapitalize="off" autocorrect="off" placeholder="Username" autofocus />
+          <input type="text" name="username" autocapitalize="off" autocorrect="off" placeholder="{% if (not providers is empty) %}Username bennu{% else %}Username{%endif%}" autofocus />
           <input type="password" name="password" placeholder="Password" />
 
           <div class="footer">
@@ -61,6 +61,9 @@
           </span>
           {{provider.name}}
         </button>
+        <p style="width: 100%; text-align: left; margin-top: 8px; font-size: 12px">
+			<input type="checkbox" id="{{provider.key}}" name="{{provider.key}}" style="width: auto; margin: 0px">  {{i18n('resources.ULisboaThemeResources', 'label.alwaysAuthWith')}} {{provider.name}}     
+  	    </p>
       {% endLazyFor %}
       </form>
 
@@ -81,6 +84,7 @@
         $('.auth-success').show(); $('.login-form').hide(); $('.auth-failed').hide();
   		$.post('{{contextPath}}{{loginPath}}', {username: username, password: password}).done(function (data) {
   			var url = $('input[type=hidden]').val() || '{{contextPath}}/startPage';
+
         $('.auth-success').text("{{i18n('resources.BennuPortalResources', 'label.welcome')}}, " + data.name + '!'); window.location = url;
         $('.provider-list').hide();
   		}).fail(function (error) {

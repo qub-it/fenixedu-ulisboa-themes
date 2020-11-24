@@ -1,3 +1,5 @@
+- Improvement: Support to check that a certain provider should always be used
+
 2.6.1 (07-10-2020)
 - Improvement: Redirecting always to startPage
 
