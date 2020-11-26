@@ -24,7 +24,35 @@
       <div class="app-name">
         {{config.applicationTitle.content}}
       </div>
+      <form class="list-group provider-list" method="POST">
+        <input type="hidden" name="callback" value="{{callback}}">
+      {% lazyFor provider in providers %}
+        <button class="list-group-item" type="submit" formaction="{{contextPath}}/login/{{provider.key}}">
+          <span style="padding-right: 5px">
+            {% if provider.iconPath.present %}
+              <img src="{{provider.iconPath.get()}}" width="22" height="22" />
+            {% else %}
+              <span class="glyphicon glyphicon-user no-icon"></span>
+            {% endif %}
+          </span>
+          {{provider.name}}
+        </button>
+        <p style="width: 100%; text-align: left; margin-top: 8px; font-size: 12px">
+			<input type="checkbox" id="{{provider.key}}" name="{{provider.key}}" style="width: auto; margin: 0px">  {{i18n('resources.ULisboaThemeResources', 'label.alwaysAuthWith')}} {{provider.name}}     
+  	    </p>
+      {% endLazyFor %}
+      </form>
+
+      {% if localLogin and (not providers is empty) %}
+        <hr />
+      {% endif %}
+
       {% if localLogin %}
+      {% if (not providers is empty) %}
+      <p style="width: 100%; text-align: left; margin-top: 8px; font-size: 12px">
+		 {{i18n('resources.ULisboaThemeResources', 'label.localLoginExplanation')}}
+  	  </p>
+	  {% endif %}
       <div class="content">
         <div class="auth-failed text-danger" style="display: none">
           {{i18n('resources.BennuPortalResources', 'label.invalid.authentication')}}
@@ -45,27 +73,6 @@
       </div>
       {% endif %}
 
-      <form class="list-group provider-list" method="POST">
-      {% if localLogin and (not providers is empty) %}
-        <hr />
-      {% endif %}
-        <input type="hidden" name="callback" value="{{callback}}">
-      {% lazyFor provider in providers %}
-        <button class="list-group-item" type="submit" formaction="{{contextPath}}/login/{{provider.key}}">
-          <span style="padding-right: 5px">
-            {% if provider.iconPath.present %}
-              <img src="{{provider.iconPath.get()}}" width="22" height="22" />
-            {% else %}
-              <span class="glyphicon glyphicon-user no-icon"></span>
-            {% endif %}
-          </span>
-          {{provider.name}}
-        </button>
-        <p style="width: 100%; text-align: left; margin-top: 8px; font-size: 12px">
-			<input type="checkbox" id="{{provider.key}}" name="{{provider.key}}" style="width: auto; margin: 0px">  {{i18n('resources.ULisboaThemeResources', 'label.alwaysAuthWith')}} {{provider.name}}     
-  	    </p>
-      {% endLazyFor %}
-      </form>
 
       {% if (not localLogin) and providers is empty %}
         <div class="alert alert-warning">
