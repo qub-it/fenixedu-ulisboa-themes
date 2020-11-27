@@ -16,14 +16,52 @@
     <script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="{{contextPath}}/api/bennu-portal/configuration/favicon">
 
-  </head>
+	<script> setLang = function(l) {
+        $.post('{{contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).done(function() {
+            location.reload();
+        });
+    }
+	</script>
+
+	<style>
+	.locale-changer {
+		font-size: 12px;
+		font-weight: 400;
+		text-transform: uppercase;
+		border-bottom: none;
+		cursor: pointer;
+	}
+	
+	.locale-changer.active {
+		cursor: inherit;
+	}
+	
+	.locale-changer:not(:last-of-type ):after {
+		content: '/';
+		font: normal 300 13px/1.2 "Helvetica Neue", sans-serif;
+		padding: 0 4px 0 7.5px;
+		color: #999;
+	}
+	
+	.locale-changer:hover {
+		text-decoration: none;
+	}
+	</style>
+</head>
 
   <body>
     <div class="container text-center">
+	<span class="pull-right" style="margin-top: 8px">
+		{% for locale in locales %}
+		<a class="locale-changer {% if locale == currentLocale %}active{% endif %}" title="{{locale.displayName}}" onclick="setLang('{{locale}}')">{{locale.language}}</a>
+		{% endfor %}
+	</span>
+  
       <img class="app-logo" src="{{contextPath}}/api/bennu-portal/configuration/logo" />
       <div class="app-name">
         {{config.applicationTitle.content}}
       </div>
+      
       <form class="list-group provider-list" method="POST">
         <input type="hidden" name="callback" value="{{callback}}">
       {% lazyFor provider in providers %}
