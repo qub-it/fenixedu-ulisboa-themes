@@ -1,20 +1,11 @@
-{% extends "default.html" %}
+{% extends "no-menus.html" %}
 {% block sideMenu %}
-	{% if "true" equals blueRecordCompleted %}
-		{{ parent() }}
-	{% endif %}
-{% endblock %}
-{% block breadcrumb %}
-			<ol class="breadcrumb">
-				<span class="pull-right">
-					{% for locale in locales %}
-						<a class="locale-changer {% if locale == currentLocale %}active{% endif %}" title="{{locale.displayName}}" onclick="setLang('{{locale}}')">{{locale.language}}</a>
-					{% endfor %}
-				</span>
-			</ol>
+    {% if "true" equals blueRecordCompleted %}
+        {{ parent() }}
+    {% endif %}
 {% endblock %}
 {% block topNavItems %}
-	{% if "true" equals blueRecordCompleted %}
-		{{ parent() }}
-	{% endif %}
+    {% if "true" equals blueRecordCompleted %}
+        {{ parent() }}
+    {% endif %}
 {% endblock %}
