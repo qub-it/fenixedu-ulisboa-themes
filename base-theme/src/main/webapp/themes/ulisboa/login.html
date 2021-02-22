@@ -46,6 +46,42 @@
 	.locale-changer:hover {
 		text-decoration: none;
 	}
+	
+	.list-group-item {
+		color: #f1f1f1;
+   		background-color: #19accd;
+   	 	border-color: #1699b6;
+	}
+	
+	button.list-group-item:hover {
+		background-color: #158da9;
+		border-color: #106b80;
+		color: #f1f1f1;
+	}
+	
+	.list-group-item .glyphicon {
+		color: #f1f1f1;	
+	}
+	
+	a.list-group-item, button.list-group-item {
+		color: #f1f1f1;
+	}
+	
+	.list-group-item:last-child:last-child {
+		border-bottom-right-radius: 0px;
+		border-bottom-left-radius: 0px;
+	}
+	
+	.footer .with-third-parties {
+		background: #ccc; 
+		border-color: #eee;
+	}
+	
+	.footer .with-third-parties:hover {
+		background: #aaa; 
+		border-color: #ccc;
+	}
+	
 	</style>
 </head>
 
@@ -75,9 +111,11 @@
           </span>
           {{provider.name}}
         </button>
+        {#
         <p style="width: 100%; text-align: left; margin-top: 8px; font-size: 12px">
 			<input type="checkbox" id="{{provider.key}}" name="{{provider.key}}" style="width: auto; margin: 0px">  {{i18n('resources.ULisboaThemeResources', 'label.alwaysAuthWith')}} {{provider.name}}     
   	    </p>
+  	    #}
       {% endLazyFor %}
       </form>
 
@@ -105,7 +143,11 @@
           <input type="password" name="password" placeholder="Password" />
 
           <div class="footer">
-            <input type="submit" value="&#10003;" />
+            <input type="submit" value="&#10003;"   
+            	{% if (not providers is empty) %} 
+            		class="with-third-parties" 
+            	{% endif %}
+            />
           </div>
         </form>
       </div>
