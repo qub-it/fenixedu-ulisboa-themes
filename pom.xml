@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.fenixedu.ulisboa</groupId>
 	<artifactId>themes</artifactId>
-	<version>2.6.3</version>
+	<version>2.6.3.20210222_1420</version>
 	<packaging>pom</packaging>
 
 	<properties>
