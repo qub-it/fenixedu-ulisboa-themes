@@ -170,7 +170,11 @@
   		var password = $(event.target).find('input[type=password]').val();
         $('.auth-success').show(); $('.login-form').hide(); $('.auth-failed').hide();
   		$.post('{{contextPath}}{{loginPath}}', {username: username, password: password}).done(function (data) {
-  			var url = $('input[type=hidden]').val() || '{{contextPath}}/startPage';
+  			var url = '{{contextPath}}/startPage';
+  			var redirectURL = $('input[type=hidden]').val();
+  			if(redirectURL){
+  			   url = url + "?callback=" + redirectURL;
+  			}
 
         $('.auth-success').text("{{i18n('resources.BennuPortalResources', 'label.welcome')}}, " + data.name + '!'); window.location = url;
         $('.provider-list').hide();
