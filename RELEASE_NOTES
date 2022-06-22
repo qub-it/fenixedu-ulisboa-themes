@@ -1,3 +1,5 @@
+- Improvement: Change FA Theme
+
 2.7.5 (10-08-2021)
 - Refactor: Refactored login callback so it doesn't skip post login redirectors
 
