@@ -51,6 +51,11 @@
 		color: #f1f1f1;
    		background-color: #19accd;
    	 	border-color: #1699b6;
+		}
+	
+	button.list-group-item {
+		line-height: 3;
+		text-align: center;		
 	}
 	
 	button.list-group-item:hover {
@@ -70,6 +75,13 @@
 	.list-group-item:last-child:last-child {
 		border-bottom-right-radius: 0px;
 		border-bottom-left-radius: 0px;
+	}
+	
+	input[type=submit].with-third-parties {
+		line-height: 1;
+		font-size: 25px;
+		text-align: center;
+		margin-top: 0px
 	}
 	
 	.footer .with-third-parties {
@@ -98,31 +110,7 @@
         {{config.applicationTitle.content}}
       </div>
       
-      <form class="list-group provider-list" method="POST">
-        <input type="hidden" name="callback" value="{{callback}}">
-      {% lazyFor provider in providers %}
-        <button class="list-group-item" type="submit" formaction="{{contextPath}}/login/{{provider.key}}">
-          <span style="padding-right: 5px">
-            {% if provider.iconPath.present %}
-              <img src="{{provider.iconPath.get()}}" width="22" height="22" />
-            {% else %}
-              <span class="glyphicon glyphicon-user no-icon"></span>
-            {% endif %}
-          </span>
-          {{provider.name}}
-        </button>
-        {#
-        <p style="width: 100%; text-align: left; margin-top: 8px; font-size: 12px">
-			<input type="checkbox" id="{{provider.key}}" name="{{provider.key}}" style="width: auto; margin: 0px">  {{i18n('resources.ULisboaThemeResources', 'label.alwaysAuthWith')}} {{provider.name}}     
-  	    </p>
-  	    #}
-      {% endLazyFor %}
-      </form>
-
-      {% if localLogin and (not providers is empty) %}
-        <hr />
-      {% endif %}
-
+     
       {% if localLogin %}
       {% if (not providers is empty) %}
       <p style="width: 100%; text-align: left; margin-top: 8px; font-size: 12px">
@@ -131,7 +119,7 @@
 	  {% endif %}
       <div class="content">
         <div class="auth-failed text-danger" style="display: none">
-          {{i18n('resources.BennuPortalResources', 'label.invalid.authentication')}}
+          {{i18n('resources.ULisboaThemeResources', 'label.invalid.authentication')}}
         </div>
         <div class="auth-success text-success" style="display: none">
           {{i18n('resources.BennuPortalResources', 'label.logging.in')}}
@@ -153,6 +141,35 @@
       </div>
       {% endif %}
 
+	  {% if localLogin and (not providers is empty) %}
+        <hr />
+        
+         <p style="width: 100%; text-align: center; margin-top: 8px; font-size: 12px">
+		 {{i18n('resources.ULisboaThemeResources', 'label.orLoginWith')}}
+	  	 </p>
+      {% endif %}
+
+ 	  <form class="list-group provider-list" method="POST">
+        <input type="hidden" name="callback" value="{{callback}}">
+      {% lazyFor provider in providers %}
+        <button class="list-group-item" type="submit" formaction="{{contextPath}}/login/{{provider.key}}">
+          <span style="padding-right: 5px">
+            {% if provider.iconPath.present %}
+              <img src="{{provider.iconPath.get()}}" width="22" height="22" />
+            {% else %}
+              <span class="glyphicon glyphicon-user no-icon"></span>
+            {% endif %}
+          </span>
+          {{provider.name}}
+        </button>
+        {#
+        <p style="width: 100%; text-align: left; margin-top: 8px; font-size: 12px">
+			<input type="checkbox" id="{{provider.key}}" name="{{provider.key}}" style="width: auto; margin: 0px">  {{i18n('resources.ULisboaThemeResources', 'label.alwaysAuthWith')}} {{provider.name}}     
+  	    </p>
+  	    #}
+      {% endLazyFor %}
+      </form>
+      
 
       {% if (not localLogin) and providers is empty %}
         <div class="alert alert-warning">
