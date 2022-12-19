@@ -1,3 +1,5 @@
+- Bug fix: Removing layout menu from print to avoid issues with new chrome versions
+
 2.9.0 (12-08-2022)
 - New feature: Adds user not found error page
 
