@@ -13,8 +13,7 @@
 	<name>ULisboa Fenix Theme Configurator</name>
 
 	<properties>
-		<java.compilation.source.version>1.8</java.compilation.source.version>
-		<java.compilation.target.version>1.8</java.compilation.target.version>
+		<java.compilation.version>11</java.compilation.version>
 		<version.org.apache.maven.plugins.maven.compiler.plugin>3.1</version.org.apache.maven.plugins.maven.compiler.plugin>
 	</properties>
 	
@@ -69,8 +68,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${version.org.apache.maven.plugins.maven.compiler.plugin}</version>
 				<configuration>
-					<source>${java.compilation.source.version}</source>
-					<target>${java.compilation.target.version}</target>
+					<source>${java.compilation.version}</source>
+					<target>${java.compilation.version}</target>
 					<verbose>true</verbose>
 					<fork>true</fork>
 					<fork>true</fork>
