@@ -13,7 +13,7 @@
 	<name>ULisboa Fenix Theme Configurator</name>
 
 	<properties>
-		<java.compilation.version>11</java.compilation.version>
+		<java.compilation.version>17</java.compilation.version>
 		<version.org.apache.maven.plugins.maven.compiler.plugin>3.1</version.org.apache.maven.plugins.maven.compiler.plugin>
 	</properties>
 	
