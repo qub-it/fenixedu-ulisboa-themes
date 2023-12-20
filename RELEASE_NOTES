@@ -1,3 +1,5 @@
+- Improvement: Upgrades to java 17 [#qubIT-Omnis-4749]
+
 2.11.0 (06-05-2024)
 - Refactor: Uses new submit report url [#qubIT-Omnis-5785]
 - Improvement: Uses support url from portal configuration [#qubIT-Omnis-5755]
