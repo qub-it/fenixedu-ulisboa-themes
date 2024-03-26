@@ -88,9 +88,16 @@
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav" >
 					<li class="btn-warning" style="font-weight: bold;">
-					{% if config.ulisboaPortal.qualityMode %}
-								<a>Ambiente de Qualidade: As alterações realizadas serão perdidas na próxima actualização</a>
-					{% endif %}
+						{% if devMode %}
+							<a>{{i18n('resources.ULisboaThemeResources', 'label.development.mode')}}</a>
+						{% elseif config.ulisboaPortal.qualityMode %}
+							<a>{{i18n('resources.ULisboaThemeResources', 'label.quality.mode')}}</a>	
+						{% endif %}
+						{% if config.ulisboaPortal.qualityMode or devMode %}
+							{% if databaseTimeTick is not empty %}
+								<a>{{ i18n('resources.ULisboaThemeResources', 'label.database.last.tick') ~ databaseTimeTick  }}</a>
+							{% endif %}	
+						{% endif %}
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
