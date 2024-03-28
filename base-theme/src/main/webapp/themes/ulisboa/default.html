@@ -84,20 +84,27 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="{{contextPath}}/" target="_blank">{{config.applicationTitle.content}}</a></li>
 			</div>
-
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav" >
-					<li class="btn-warning" style="font-weight: bold;">
-						{% if devMode %}
-							<a>{{i18n('resources.ULisboaThemeResources', 'label.development.mode')}}</a>
-						{% elseif config.ulisboaPortal.qualityMode %}
-							<a>{{i18n('resources.ULisboaThemeResources', 'label.quality.mode')}}</a>	
-						{% endif %}
-						{% if config.ulisboaPortal.qualityMode or devMode %}
-							{% if databaseTimeTick is not empty %}
-								<a>{{ i18n('resources.ULisboaThemeResources', 'label.database.last.tick') ~ databaseTimeTick  }}</a>
-							{% endif %}	
-						{% endif %}
+					<li class="devAndQualWarning">
+						<div class = "devAndQualWarningWrapper">
+							<span class = "messageDescription {% if databaseTimeTick is not empty %} withTick {% endif %} " >
+								{% if devMode %}
+									{{i18n('resources.ULisboaThemeResources', 'label.development.mode')}}
+								{% elseif config.ulisboaPortal.qualityMode %}
+									{{i18n('resources.ULisboaThemeResources', 'label.quality.mode')}}	
+								{% endif %}
+								{% if config.ulisboaPortal.qualityMode or devMode %}
+									{% if databaseTimeTick is not empty %}
+										<br/>
+										<span class = "dateTimeTick" > 
+											{{ i18n('resources.ULisboaThemeResources', 'label.database.last.tick') ~ databaseTimeTick  }}
+										</span>
+									{% endif %}	
+								{% endif %}
+
+							</span>
+						</div>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
