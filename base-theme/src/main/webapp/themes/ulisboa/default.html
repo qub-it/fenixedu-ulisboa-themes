@@ -88,7 +88,7 @@
 				<ul class="nav navbar-nav" >
 					<li class="devAndQualWarning">
 						<div class = "devAndQualWarningWrapper">
-							<span class = "messageDescription {% if databaseTimeTick is not empty %} withTick {% endif %} " >
+							<span class = "messageDescription" >
 								{% if devMode %}
 									{{i18n('resources.ULisboaThemeResources', 'label.development.mode')}}
 								{% elseif config.ulisboaPortal.qualityMode %}
@@ -96,9 +96,8 @@
 								{% endif %}
 								{% if config.ulisboaPortal.qualityMode or devMode %}
 									{% if databaseTimeTick is not empty %}
-										<br/>
 										<span class = "dateTimeTick" > 
-											{{ i18n('resources.ULisboaThemeResources', 'label.database.last.tick') ~ databaseTimeTick  }}
+										({{ i18n('resources.ULisboaThemeResources', 'label.database.last.tick') ~ databaseTimeTick  }})
 										</span>
 									{% endif %}	
 								{% endif %}
