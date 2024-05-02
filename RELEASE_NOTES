@@ -1,3 +1,4 @@
+- Refactor: Uses new submit report url [#qubIT-Omnis-5785]
 - Improvement: Uses support url from portal configuration [#qubIT-Omnis-5755]
 
 2.10.3 (19-04-2024)

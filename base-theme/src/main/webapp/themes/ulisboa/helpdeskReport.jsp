@@ -111,7 +111,7 @@ $('#supportForm').on('submit', function(event) {
     });
     target.find('button[type=submit]').html("<fmt:message key='label.helpdesk.report.error.submitting' bundle='${lang}'/>...");
     target.find('button[type=submit]').attr('disabled', true);
-    $.post('${pageContext.request.contextPath}/fenixedu-ulisboa-specifications/helpdeskreport/submitReport', JSON.stringify(data), function () {
+    $.post('${pageContext.request.contextPath}/api/fenixedu-ulisboa-specifications/helpdeskreport/submitReport', JSON.stringify(data), function () {
         target.find('.success').removeClass('hide');
         target.find('.modal-footer').hide();
         target.find('.form-body').hide();

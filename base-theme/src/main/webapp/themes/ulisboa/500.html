@@ -153,7 +153,7 @@ Locale       | {{locale}}
 			$scope.data.exceptionMessage='{{exceptionMessage}}';
 			$scope.sendForm = function() {
 				$scope.sending = true;
-				$http.post('{{contextPath}}/fenixedu-ulisboa-specifications/helpdeskreport/submitReport', $scope.data).then(function () {
+				$http.post('{{contextPath}}/api/fenixedu-ulisboa-specifications/helpdeskreport/submitReport', $scope.data).then(function () {
 					$scope.success = true;
 				});
 			}
