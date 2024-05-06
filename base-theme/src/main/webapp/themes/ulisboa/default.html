@@ -234,9 +234,16 @@
 							<a id="openHelpdesk" href="javascript:">{{i18n('resources.ULisboaThemeResources', 'link.helpdeskReport')}}</a>
 						</span>
 
-						<a href="{{contextPath}}/support">
-							{{i18n('resources.ULisboaThemeResources', 'link.helpDesk.management')}}
-						</a>
+						{% if config.supportUrl is empty %}
+							<a href="{{contextPath}}/support">
+								{{i18n('resources.ULisboaThemeResources', 'link.helpDesk.management')}}
+							</a>
+						{% else %}
+							<a href="{{contextPath}}/{{config.supportUrl}}">
+								{{i18n('resources.ULisboaThemeResources', 'link.helpDesk.management')}}
+							</a>
+						{% endif %}
+						
 					{% endif %}
 				</p>
 				<div class="col-sm-2 text-center">
