@@ -100,6 +100,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.fenixedu.ulisboa.themes</groupId>
 			<version>${ulisboa-themes-version}</version>
 			<artifactId>isa-theme</artifactId>
