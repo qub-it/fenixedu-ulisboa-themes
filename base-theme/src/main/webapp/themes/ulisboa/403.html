@@ -1,0 +1,98 @@
+<!--
+
+    Copyright © 2002 Instituto Superior Técnico
+
+    This file is part of FenixEdu Academic.
+
+    FenixEdu Academic is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    FenixEdu Academic is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with FenixEdu Academic.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<!DOCTYPE html>
+
+<head>
+	<title>
+		{{i18n('resources.ULisboaThemeResources', 'title.not.authorized')}}
+	</title>
+	<link href="{{contextPath}}/bennu-core/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+			font: 16px 'Roboto', sans-serif;
+			font-weight:100;
+			color: #617383;
+			background-color: #F1F1F1;
+		}
+		.container {
+			margin: 60px auto 0 auto;
+			max-width: 700px;
+			background-color: white;
+			padding: 30px;
+			border-radius: 7px;
+		}
+		.content { margin-top: 25px; }
+		@media (max-width: 767px) {
+			.title > * {
+				text-align: center !important;
+			}
+			img {
+				padding-bottom: 5px;
+			}
+		}
+		.title {
+			border-bottom: 1px solid #eee;
+			font-size: 22px;
+			padding-bottom: 15px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="title row">
+			<div class="col-sm-6 text-right col-sm-push-6">
+				{% if logoResource != null %}
+					<img src="{{contextPath}}/portalImage?resourceId={{ logoResource.externalId }}"/>
+				{% else %}
+					<img src="{{contextPath}}/api/bennu-portal/configuration/logo"/>
+				{% endif %}
+			</div>
+			<div class="col-sm-6 col-sm-pull-6">
+				 {{i18n('resources.ULisboaThemeResources', 'title.not.authorized')}}
+			</div>
+		</div>
+		<div class="content">
+			<p>{{i18n('resources.ULisboaThemeResources', 'error.not.authorized')}}</p>
+            <br />
+			{% if currentUser is empty %}
+				<p><a id="goToLogin" href="{{loginPage}}">Login</a></p>
+                 <script>
+                         var link = document.getElementById("goToLogin");
+                         var href = link.href;
+                         var callback = window.location.href;
+                         if (callback != null) {
+                           callback = callback.split("#")[0];
+                           link.href= href + "?callback=" + callback;
+                         }else {
+                           link.href = href;
+                         }
+
+                 </script>
+            {% else %}
+            <p><a href="{{contextPath}}">{{basicLocalization.back()}}</a></p>	 
+            {% endif %}
+		</div>
+	</div>
+</body>
