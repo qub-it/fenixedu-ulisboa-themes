@@ -60,38 +60,38 @@
 </head>
 
 <body>
-<div class="container">
-    <div class="title row">
-        <div class="col-sm-6 text-right col-sm-push-6">
-            {% if logoResource != null %}
-            <img src="{{contextPath}}/portalImage?resourceId={{ logoResource.externalId }}"/>
+    <div class="container">
+        <div class="title row">
+            <div class="col-sm-6 text-right col-sm-push-6">
+                {% if logoResource != null %}
+                <img src="{{contextPath}}/portalImage?resourceId={{ logoResource.externalId }}"/>
+                {% else %}
+                <img src="{{contextPath}}/api/bennu-portal/configuration/logo"/>
+                {% endif %}
+            </div>
+            <div class="col-sm-6 col-sm-pull-6">
+                {{i18n('resources.ULisboaThemeResources', 'error.not.found')}}
+            </div>
+        </div>
+        <div class="content">
+            <p>{{i18n('resources.ULisboaThemeResources', 'error.not.found.message')}}</p>
+            <br/>
+            {% if currentUser is empty %}
+            <p><a id="goToLogin" href="{{contextPath}}/{{loginPage}}">Login</a></p>
+            <script>
+                var link = document.getElementById("goToLogin");
+                var href = link.href;
+                var callback = window.location.href;
+                if (callback != null) {
+                    callback = callback.split("#")[0];
+                    link.href= href + "?callback=" + callback;
+                }else {
+                    link.href = href;
+                }
+            </script>
             {% else %}
-            <img src="{{contextPath}}/api/bennu-portal/configuration/logo"/>
+            <p><a href="{{contextPath}}">{{i18n('resources.ULisboaThemeResources', 'label.error.backButtonCaption')}}</a></p>
             {% endif %}
         </div>
-        <div class="col-sm-6 col-sm-pull-6">
-            {{i18n('resources.ULisboaThemeResources', 'error.not.found')}}
-        </div>
     </div>
-    <div class="content">
-        <p>{{i18n('resources.ULisboaThemeResources', 'error.not.found.message')}}</p>
-        <br/>
-        {% if currentUser is empty %}
-        <p><a id="goToLogin" href="{{loginPage}}">Login</a></p>
-        <script>
-            var link = document.getElementById("goToLogin");
-            var href = link.href;
-            var callback = window.location.href;
-            if (callback != null) {
-                callback = callback.split("#")[0];
-                link.href= href + "?callback=" + callback;
-            }else {
-                link.href = href;
-            }
-        </script>
-        {% else %}
-        <p><a href="{{contextPath}}">{{basicLocalization.back()}}</a></p>
-        {% endif %}
-    </div>
-</div>
 </body>

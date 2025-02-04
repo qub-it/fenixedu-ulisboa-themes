@@ -77,7 +77,7 @@
 			<p>{{i18n('resources.ULisboaThemeResources', 'error.not.authorized')}}</p>
             <br />
 			{% if currentUser is empty %}
-				<p><a id="goToLogin" href="{{loginPage}}">Login</a></p>
+				<p><a id="goToLogin" href="{{contextPath}}/{{loginPage}}">Login</a></p>
                  <script>
                          var link = document.getElementById("goToLogin");
                          var href = link.href;
@@ -91,7 +91,7 @@
 
                  </script>
             {% else %}
-            <p><a href="{{contextPath}}">{{basicLocalization.back()}}</a></p>	 
+            <p><a href="{{contextPath}}">{{i18n('resources.ULisboaThemeResources', 'label.error.backButtonCaption')}}</a></p>
             {% endif %}
 		</div>
 	</div>
