@@ -251,7 +251,7 @@
 		<p>{{i18n('resources.ULisboaThemeResources', 'label.error.occurred.detail')}}</p>
 		{% if currentUser is null %}
 		<br />
-		<p><a id="goToLogin" href="{{contextPath}}/{{loginPage}}">Login</a></p>
+		<p><a id="goToLogin" href="{{fullLoginPath}}">Login</a></p>
 		<script>
 			var link = document.getElementById("goToLogin");
             var href = link.href;
