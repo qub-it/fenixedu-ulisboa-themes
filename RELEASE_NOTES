@@ -1,3 +1,4 @@
+2.13.0 (07-02-2025)
 - Improvement: Updates 500 error page with js support form submission [#qubIT-Omnis-8481]
 - Improvement: Adds 403 and 404 error pages [#qubIT-Omnis-8252]
 - Improvement: Adds default userNotFound html [#qubIT-Omnis-8411]
