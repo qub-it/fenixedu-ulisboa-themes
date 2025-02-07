@@ -1,162 +1,272 @@
-<html ng-app="errorPageApp">
-	<head>
-		<title>{{i18n('resources.BennuPortalResources', 'label.error.occurred')}} · {{config.applicationTitle.content}}</title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" media="screen" href="{{contextPath}}/themes/{{school-theme}}/css/general.css">
-    	<link href="{{contextPath}}/themes/{{school-theme}}/css/style.css" rel="stylesheet">
-		<script src="{{contextPath}}/bennu-portal/js/angular.min.js"></script>
-	</head>
-	<body ng-controller="ErrorCtrl">
-		<div class="container">
-			<div class="title">
-				<img style="width:200px;" src="{{contextPath}}/api/bennu-portal/configuration/logo" />
-				<span class="right">
+{% if config.fenixeduPortalConfiguration.supportActive and config.fenixeduPortalConfiguration.supportAccessibleToCurrentUser %}
+
+<html>
+<head>
+	<title>{{i18n('resources.BennuPortalResources', 'label.error.occurred')}} · {{config.applicationTitle.content}}</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" media="screen" href="{{contextPath}}/themes/{{school-theme}}/css/general.css">
+	<link href="{{contextPath}}/themes/{{school-theme}}/css/style.css" rel="stylesheet">
+
+	<!-- page plugins css -->
+
+	<link rel="stylesheet" type="text/css"
+		  href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+	<!-- core css -->
+	<link href="{{contextPath}}/themes/{{school-theme}}/assets/scss/app.scss" rel="stylesheet">
+
+	<script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
+	<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script type="text/javascript">
+		toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-center",
+              "preventDuplicates": true,
+              "onclick": null,
+              "showDuration": "1",
+              "hideDuration": "1000",
+              "timeOut": "10000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+        }
+	</script>
+</head>
+<body >
+<div class="container">
+	<div class="title">
+		{% if logoResource != null %}
+		<img src="{{contextPath}}/portalImage?resourceId={{ logoResource.externalId }}"/>
+		{% else %}
+		<img src="{{contextPath}}/api/bennu-portal/configuration/logo"/>
+		{% endif %}
+		<span class="right">
 					{{i18n('resources.BennuPortalResources', 'label.error.occurred')}}
-				</span>
+		</span>
+	</div>
+	<div class="content">
+		<p style="text-align: center;">
+			{{i18n('resources.ULisboaThemeResources', 'label.error.page.welcome')}}
+		</p>
+		<form id = "supportForm" class="form-horizontal" method="POST" action="{{contextPath}}/{{ supportConfig.localServerPostURL }}">
+			{%  for formField in  formFields %}
+			{% if formField.hidden %}
+			<input type="hidden" placeholder="{{formField.label}}"
+				   autocomplete="off" name="{{formField.name}}"
+				   id="{{formField.name}}" value="{{ formField.value }}">
+			{% elseif formField.textArea %}
+			<div class="form-group">
+				<label for="{{ formField.name }}">{{ formField.label }}</label>
+				<div class="form-input">
+					<textarea class="form-control" autocomplete="off"
+							  name="{{ formField.name }}" id="{{ formField.name }}">{{ formField.value }}</textarea>
+				</div>
 			</div>
-			<div class="content" ng-show="!success">
-				<p>
-					{{i18n('resources.ULisboaThemeResources', 'label.error.page.welcome')}}
-				</p>
+			{% elseif formField.options is not empty %}
+			<div class="form-group">
+				<label for="{{formField.name}}">{{ formField.label }}</label>
+				<div class="form-input">
+					<select
+						class="form-control" autocomplete="off" name="{{formField.name}}"
+						id="{{ formField.name }}"">
+					{% for entry in formField.options %}
+						<option value="{{  entry.value }}">{{  entry.key }}</option>
+					{% endfor %}
+					</select>
+				</div>
+			</div>
+			{% else %}
+			<div class="form-group">
+				<label for="{{formField.name}}">{{ formField.label }}</label>
+				<div class="form-input">
+					<input
+						class="form-control" autocomplete="off" name="{{formField.name}}"
+						id="{{ formField.name }}" value="{{ formField.value }}">
+				</div>
+			</div>
+			{% endif %}
+			{% endfor %}
+		</form>
+			<div class = "options-row">
+				<a href="{{ contextPath }}" class="btn btn-default"> {{i18n('resources.ULisboaThemeResources', 'label.error.backButtonCaption')}}</a>
+				<input type="submit" class="btn btn-primary" value="{{i18n('resources.ULisboaThemeResources', 'label.helpdesk.report.submit')}}" id="submitSupportForm">
+			</div>
+			<script type="text/javascript">
+				$("#submitSupportForm").click(function() {
+					$.ajax({
+						url : "{{contextPath}}/{{supportConfig.localServerPostURL}}",
+						type: "POST",
+						  contentType: "application/json",
+						data : JSON.stringify({
+							{%  for formField in  formFields %}
+							{% if loop.index > 0 %},{% endif %}
+							{{ formField.name}} : $("#{{formField.name}}").val()
+							{% endfor %}
+						})
+					}).done(function() {
+							$("#supportForm").find("input:visible").each(function() { $(this).val(""); });
+							$("#supportForm").find("textarea:visible").each(function() { $(this).val(""); });
+							toastr["success"]("{{ i18n('resources.ULisboaThemeResources', 'label.error.500.successSupportSubmition') }}");
+						})
+						.fail(function() {
+							toastr["error"]("{{ i18n('resources.ULisboaThemeResources', 'label.error.500.errorSupportSubmition') }}");
+						});
+				});
+			</script>
+	</div>
+</div>
+</body>
 
-				<form class="form-horizontal" ng-submit="sendForm()">
-					<input type="hidden" id="exceptionInfo" value="
-*** Error Message ***
-{{exception.localizedMessage}}
-*** Request Info ***
-User         | {{loggedUser.username}}
-Request URI  | {{request.requestURI}}
-Request URL  | {{request.requestURL}}
-Query String | {{request.queryString}}
-Method       | {{request.method}}
-Locale       | {{locale}}
-*** Request Parameters ***
-{% for entry in parameters %}
-[{{entry.key}}] {{entry.value}}
-{% endfor %}
-*** Request Attributes ***
-{% for entry in attributes %}
-[{{entry.key}}] {{entry.value}}
-{% endfor %}
-*** Stacktrace ***
-{{stackTrace}}
-" />
-					<div class="form-group">
-						<label for="email" class="col-sm-2 control-label">{{i18n('resources.ULisboaThemeResources', 'label.error.page.email')}}</label>
-						<div class="form-input">
-							{% if loggedUser is null %}
-								<input type="email" class="form-control" ng-model="data.email" id="email" required />
-							{% else %}
-								<input type="email" class="form-control" ng-model="data.email" id="email" readonly ng-init="data.email = '{{loggedUser.email}}'" />
-							{% endif %}
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="subject" class="col-sm-2 control-label">{{i18n('resources.ULisboaThemeResources', 'label.helpdesk.report.subject')}}</label>
-						<div class="form-input">
-							<input type="text" class="form-control" ng-model="data.subject" id="subject" required />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="description" class="col-sm-2 control-label">{{i18n('resources.ULisboaThemeResources', 'label.helpdesk.report.description')}}</label>
-						<div class="form-input">
-							<textarea class="form-control" ng-model="data.description" id="description" rows="5" required></textarea>
-							<small>{{i18n('resources.ULisboaThemeResources', 'label.error.page.help')}}</small>
-						</div>
-					</div>
-					<input type="submit" class="btn btn-primary" value="{{i18n('resources.ULisboaThemeResources', 'label.helpdesk.report.submit')}}" ng-if="!sending">
-					<input type="submit" class="btn btn-primary" disabled value="{{i18n('resources.ULisboaThemeResources', 'label.helpdesk.report.error.submitting')}}..." ng-if="sending">
-				</form>
-			</div>
-			<div class="success" ng-if="success">
-				<h3>{{i18n('resources.ULisboaThemeResources', 'label.helpdesk.report.submitted')}}</h3>
-				{{i18n('resources.ULisboaThemeResources', 'label.helpdesk.report.submitted.body')}} <a href="mailto:{{config.supportEmailAddress}}">{{config.supportEmailAddress}}</a>.
-			</div>
-		</div>
-	</body>
+<style>
+	body {
+        font: 15px 'Roboto', sans-serif;
+        background-color: #F1F1F1;
+        font-weight:100;
+        color: #617383;
+    }
+    .container {
+        margin: 120px auto 0 auto;
+        width: 800px;
+        background-color: white;
+        padding: 20px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 5px;
+    }
+    .content {
+        margin: 20px auto 20px auto;
+    }
+    .right {
+        float: right;
+    }
+    .title {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+        font-size: 25px;
+    }
+    label {
+        width: 18%;
+        float: left;
+        text-align: right;
+        position: relative;
+        padding-right: 10px;
+        padding-top: 10px;
+    }
+    .form-control {
+        margin-bottom: 15px;
+    }
+    .form-input {
+        width: 75%;
+        float: left;
+        position: relative;
+    }
+    small {
+        color: #999;
+    }
+    .form-input input, .form-input textarea, .form-input select {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        padding: 6px 12px;
+        font-size: 12px;
+        line-height: 1.42857143;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    }
+    .success {
+        text-align: center;
+    }
+	.options-row {
+		display: flex;
+		justify-content: space-around;
+	}
+</style>
+</html>
 
+{% else %}
+
+<html>
+
+<head>
+	<title>
+		{{i18n('resources.ULisboaThemeResources', 'label.error.occurred')}}
+	</title>
+	<link href="{{contextPath}}/bennu-core/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		body {
-			font: 15px 'Roboto', sans-serif;
-			background-color: #F1F1F1;
+			font: 16px 'Roboto', sans-serif;
 			font-weight:100;
 			color: #617383;
+			background-color: #F1F1F1;
 		}
 		.container {
-			margin: 120px auto 0 auto;
-			width: 800px;
+			margin: 60px auto 0 auto;
+			max-width: 700px;
 			background-color: white;
-			padding: 20px;
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			border-radius: 5px;
+			padding: 30px;
+			border-radius: 7px;
 		}
-		.content {
-			margin: 20px auto 20px auto;
-		}
-		.right {
-			float: right;
+		.content { margin-top: 25px; }
+		@media (max-width: 767px) {
+			.title > * {
+				text-align: center !important;
+			}
+			img {
+				padding-bottom: 5px;
+			}
 		}
 		.title {
 			border-bottom: 1px solid #eee;
+			font-size: 22px;
 			padding-bottom: 15px;
-			font-size: 25px;
-		}
-		label {
-			width: 18%;
-			float: left;
-			text-align: right;
-			position: relative;
-			padding-right: 10px;
-			padding-top: 10px;
-		}
-		.form-control {
-			margin-bottom: 15px;
-		}
-		.form-input {
-			width: 75%;
-			float: left;
-			position: relative;
-		}
-		small {
-			color: #999;
-		}
-		input[type=submit] {
-			margin-left: 19%;
-			margin-top: 15px;
-		}
-		.form-input input, .form-input textarea {
-			display: block;
-			width: 100%;
-			max-width: 100%;
-			padding: 6px 12px;
-			font-size: 12px;
-			line-height: 1.42857143;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-		}
-		.success {
-			text-align: center;
 		}
 	</style>
+</head>
 
-	<script>
-		angular.module('errorPageApp', []).controller('ErrorCtrl', ['$scope', '$http', function($scope, $http) {
-			$scope.data = {}; $scope.success = false; $scope.sending = false; $scope.data.userAgent = "{{userAgent}}"; $scope.data.referer = "{{referer}}";
-			$scope.data.functionality = '{{functionality.externalId}}'; $scope.data.exceptionInfo = document.getElementById('exceptionInfo').value;
-			$scope.data.exceptionFullQualifiedName='{{exceptionFullQualifiedName}}';
-			$scope.data.offendingClass='{{offendingClass}}';
-			$scope.data.offendingMethod='{{offendingMethod}}';
-			$scope.data.offendingLine='{{offendingLine}}';
-			$scope.data.exceptionMessage='{{exceptionMessage}}';
-			$scope.sendForm = function() {
-				$scope.sending = true;
-				$http.post('{{contextPath}}/api/defaultSupportRequest', $scope.data).then(function () {
-					$scope.success = true;
-				});
-			}
-		}]);
-	</script>
+<body>
+<div class="container">
+	<div class="title row">
+		<div class="col-sm-6 text-right col-sm-push-6">
+			{% if logoResource != null %}
+			<img src="{{contextPath}}/portalImage?resourceId={{ logoResource.externalId }}"/>
+			{% else %}
+			<img src="{{contextPath}}/api/bennu-portal/configuration/logo"/>
+			{% endif %}
+		</div>
+		<div class="col-sm-6 col-sm-pull-6">
+			{{i18n('resources.ULisboaThemeResources', 'label.error.occurred')}}
+		</div>
+	</div>
+	<div class="content">
+		<p>{{i18n('resources.ULisboaThemeResources', 'label.error.occurred.detail')}}</p>
+		{% if currentUser is null %}
+		<br />
+		<p><a id="goToLogin" href="{{fullLoginPath}}">Login</a></p>
+		<script>
+			var link = document.getElementById("goToLogin");
+            var href = link.href;
+            var callback = window.location.href;
+            if (callback != null) {
+              callback = callback.split("#")[0];
+              link.href= href + "?callback=" + callback;
+            } else {
+              link.href = href;
+            }
+		</script>
+		{% endif %}
+	</div>
+</div>
+</body>
+
 </html>
+{% endif %}

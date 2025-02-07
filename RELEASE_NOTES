@@ -1,3 +1,7 @@
+- Improvement: Updates 500 error page with js support form submission [#qubIT-Omnis-8481]
+- Improvement: Adds 403 and 404 error pages [#qubIT-Omnis-8252]
+- Improvement: Adds default userNotFound html [#qubIT-Omnis-8411]
+
 2.12.2 (05-11-2024)
 - Refactor: Replaces calls to helpdesk report controller with calls to default support request handler [#qubIT-Support-8445]
 
