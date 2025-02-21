@@ -14,7 +14,17 @@
     <link href="{{contextPath}}/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{contextPath}}/bennu-portal/css/login.css" rel="stylesheet">
     <script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="{{contextPath}}/api/bennu-portal/configuration/favicon">
+
+
+    <!-- Favicon -->
+      <!-- Favicons & TouchIcons-->
+    {% if config.fenixeduPortalConfiguration.favicons is empty %}
+      <link rel="shortcut icon" type="image/x-icon" href="{{contextPath}}/api/bennu-portal/configuration/favicon">
+    {% else %}
+      {% for favicon in config.fenixeduPortalConfiguration.favicons %}
+        <link rel="shortcut icon" type="image/png" sizes="{{favicon.width}}x{{favicon.height}}" href="{{contextPath}}/portalImage?resourceId={{ favicon.externalId }}">
+      {% endfor %}
+    {% endif %}
 
 	<script> setLang = function(l) {
         $.post('{{contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).done(function() {
@@ -104,11 +114,14 @@
 		<a class="locale-changer {% if locale == currentLocale %}active{% endif %}" title="{{locale.displayName}}" onclick="setLang('{{locale}}')">{{locale.language}}</a>
 		{% endfor %}
 	</span>
-  
-      <img class="app-logo" src="{{contextPath}}/api/bennu-portal/configuration/logo" />
-      <div class="app-name">
-        {{config.applicationTitle.content}}
-      </div>
+        {% if config.fenixeduPortalConfiguration.logoInstitution != null %}
+            <img src="{{contextPath}}/portalImage?resourceId={{  config.fenixeduPortalConfiguration.logoInstitution.externalId }}">
+        {% else %}
+            <img class="app-logo" src="{{contextPath}}/api/bennu-portal/configuration/logo"/>
+        {% endif %}
+        <div class="app-name">
+            {{config.applicationTitle.content}}
+        </div>
       
      
       {% if localLogin %}
