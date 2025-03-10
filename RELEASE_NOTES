@@ -1,3 +1,5 @@
+- Improvement: Update the layout image references to use the PortalResources instead of the old bennu sources [#qubIT-Omnis-8585]
+
 2.13.0 (07-02-2025)
 - Improvement: Updates 500 error page with js support form submission [#qubIT-Omnis-8481]
 - Improvement: Adds 403 and 404 error pages [#qubIT-Omnis-8252]
