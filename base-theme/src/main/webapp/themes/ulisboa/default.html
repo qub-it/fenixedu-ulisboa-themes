@@ -43,8 +43,8 @@
     <title>{% block title %}{{ functionality.title.content }} · {{ selectedTopLevel.title.content }}{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-	<link rel="stylesheet" type="text/css" media="screen" href="{{application.contextPath}}/themes/{{school-theme}}/css/general.css">
-    <link href="{{application.contextPath}}/themes/{{school-theme}}/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="screen" href="{{contextPath}}/themes/{{school-theme}}/css/general.css">
+    <link href="{{contextPath}}/themes/{{school-theme}}/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -52,10 +52,10 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="{{application.contextPath}}/bennu-portal/js/jquery.min.js"></script>
-	<script src="{{application.contextPath}}/themes/{{school-theme}}/js/bootstrap.min.js"></script>
+    <script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
+	<script src="{{contextPath}}/themes/{{school-theme}}/js/bootstrap.min.js"></script>
 	<script> setLang = function(l) {
-        $.post('{{application.contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).done(function() {
+        $.post('{{contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).done(function() {
             location.reload();
             {% if functionality.provider == "uiLayer" %}
                 var newURL = ""; 
@@ -72,13 +72,7 @@
 	</script>
 
 	<!-- Favicons & TouchIcons-->
-  	{% if images.favicons is empty %}
-	  <link rel="shortcut icon" type="image/x-icon" href="{{application.contextPath}}/api/bennu-portal/configuration/favicon">
-  	{% else %}
-		{% for favicon in images.favicons %}
-			<link rel="shortcut icon" type="image/png" sizes="{{favicon.width}}x{{favicon.height}}" href="{{application.contextPath}}/portalImage?resourceId={{ favicon.externalId }}">
-		{% endfor %}
-  	{% endif %}
+	<link rel="shortcut icon" type="image/x-icon" href="{{contextPath}}/api/bennu-portal/configuration/favicon">
 
   </head>
 
@@ -88,7 +82,7 @@
 	<div class="navbar navbar-inverse hidden-xs fenixedu-bar">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="{{application.contextPath}}/" target="_blank">{{config.applicationTitle.content}}</a></li>
+				<a class="navbar-brand" href="{{contextPath}}/" target="_blank">{{config.applicationTitle.content}}</a></li>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav" >
@@ -114,13 +108,13 @@
 				<ul class="nav navbar-nav navbar-right">
 				<li></li>
 					{% if loggedUser == null %}
-						<li><a href="{{application.contextPath}}/login">Login</a></li>
+						<li><a href="{{contextPath}}/login">Login</a></li>
 					{% else %}
 						<li><a>{{loggedUser.profile.displayName}}</a></li>
 						{% if devMode %}
 							<li class="devmode active"><a>Debug Mode</a></li>
 						{% endif %}
-						<li class="active"><a href="{{application.contextPath}}/logout{{ session.getAttribute("sso") != null ? "/sso" : "" }}" >Logout</a></li>
+						<li class="active"><a href="{{contextPath}}/logout{{ session.getAttribute("sso") != null ? "/sso" : "" }}" >Logout</a></li>
 					{% endif %}
 				</ul>
 			</div>
@@ -136,10 +130,10 @@
 				<span class="icon-bar"></span>
 			</button>
 			{% if config.logoLinkUrl is empty %}
-				<img class="organizationLogo" src="{{application.contextPath}}/{% if images.logoResource != null %}portalImage?resourceId={{  images.logoResource.externalId }}{% else %}api/bennu-portal/configuration/logo{%endif%}" title="{{config.logoTooltip}}" />
+				<img class="organizationLogo" src="{{contextPath}}/api/bennu-portal/configuration/logo" title="{{config.logoTooltip}}" />
 			{% else %}
 				<a href="{{config.logoLinkUrl}}" target="_blank">
-					<img class="organizationLogo" src="{{application.contextPath}}/{% if images.logoResource != null %}portalImage?resourceId={{  images.logoResource.externalId }}{% else %}api/bennu-portal/configuration/logo{%endif%}" title="{{config.logoTooltip}}" />
+					<img class="organizationLogo" src="{{contextPath}}/api/bennu-portal/configuration/logo" title="{{config.logoTooltip}}" />
 				</a>
 			{% endif %}
 		</div>
@@ -147,10 +141,10 @@
 			<ul class="nav navbar-bottom nav-pills nav-menu">
 			{% block topNavItems %}
 			{% lazyFor item in topLevelMenu %}
-				<li class="{% if item == selectedTopLevel %}active{% endif %}"><a href="{{application.contextPath}}{{item.fullPath}}">{{item.title.content}}</a></li>
+				<li class="{% if item == selectedTopLevel %}active{% endif %}"><a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a></li>
 			{% endLazyFor %}
 			{% endblock %}
-				<li class="visible-xs"><a href="{{application.contextPath}}/logout{{ session.getAttribute("sso") != null ? "/sso" : "" }}"><strong>Logout</strong></a></li>
+				<li class="visible-xs"><a href="{{contextPath}}/logout{{ session.getAttribute("sso") != null ? "/sso" : "" }}"><strong>Logout</strong></a></li>
 			</ul>
 		</nav>
 	</header>
@@ -160,7 +154,7 @@
 			{% block breadcrumb %}
 			<ol class="breadcrumb">
 			{% for item in functionality.pathFromRoot %}
-				<li><a href="{{application.contextPath}}{{item.fullPath}}">{{item.title.content}}</a></li>
+				<li><a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a></li>
 			{% endfor %}
 
 				<span class="pull-right">
@@ -188,7 +182,7 @@
 				{% if item.userMenuStream is empty %}
 				    <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a href="{{application.contextPath}}{{item.fullPath}}">{{item.title.content}}</a>
+                            <a href="{{contextPath}}{{item.fullPath}}">{{item.title.content}}</a>
                         </h4>
                     </div>
 				{% else %}
@@ -215,7 +209,7 @@
 								<tr >
 							{%endif%}
                                     <td>
-                                        <span class="glyphicon glyphicon-th text-primary"></span> <a href="{{application.contextPath}}{{child.fullPath}}">{{child.title.content}}</a></a>
+                                        <span class="glyphicon glyphicon-th text-primary"></span> <a href="{{contextPath}}{{child.fullPath}}">{{child.title.content}}</a></a>
                                     </td>
                                 </tr>
 						{% endLazyFor %}
@@ -232,7 +226,7 @@
 		{% block footer %}
 		<footer class="clearfix" role="contentinfo" >
 				<div class="col-sm-2 text-center">
-					<a class="brand" href="http://www.ulisboa.pt/"><img src="{{application.contextPath}}/themes/{{school-theme}}/img/ul-banner.png" alt="FenixEdu at {{school-theme}}"></a>
+					<a class="brand" href="http://www.ulisboa.pt/"><img src="{{contextPath}}/themes/{{school-theme}}/img/ul-banner.png" alt="FenixEdu at {{school-theme}}"></a>
 				</div>
 				<p class="col-sm-5">
 					{% if loggedUser != null and config.fenixeduPortalConfiguration.supportAccessibleToCurrentUser %}
@@ -241,11 +235,11 @@
 						</span>
 
 						{% if config.supportUrl is empty %}
-							<a href="{{application.contextPath}}/support">
+							<a href="{{contextPath}}/support">
 								{{i18n('resources.ULisboaThemeResources', 'link.helpDesk.management')}}
 							</a>
 						{% else %}
-							<a href="{{application.contextPath}}/{{config.supportUrl}}">
+							<a href="{{contextPath}}/{{config.supportUrl}}">
 								{{i18n('resources.ULisboaThemeResources', 'link.helpDesk.management')}}
 							</a>
 						{% endif %}
@@ -253,7 +247,7 @@
 					{% endif %}
 				</p>
 				<div class="col-sm-2 text-center">
-					<img src="{{application.contextPath}}/themes/{{school-theme}}/img/sama-bw.png" alt="FenixEdu at {{school-theme}}">
+					<img src="{{contextPath}}/themes/{{school-theme}}/img/sama-bw.png" alt="FenixEdu at {{school-theme}}">
 				</div>
 		</footer>
 		<div class="modal fade" id="helpdeskModal"></div>
@@ -266,7 +260,7 @@
       });
          
 			openHelpdesk = function() {
-				$('#helpdeskModal').load('{{application.contextPath}}/themes/{{school-theme}}/helpdeskReport.jsp');
+				$('#helpdeskModal').load('{{contextPath}}/themes/{{school-theme}}/helpdeskReport.jsp');
 				$('#helpdeskModal').modal({
 					backdrop: 'static',
 					keyboard: false
