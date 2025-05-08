@@ -53,11 +53,11 @@
 		{% lazyFor subItem in item.userMenuStream %}
 			<ul class="nav nav-pills nav-stacked">
 				{% if subItem.userMenuStream is empty %}
-					<a href="{{contextPath}}{{subItem.fullPath}}?executionCourseID={{executionCourse.externalId}}&executionCourseId={{executionCourse.externalId}}"><li class="navheader"><strong>{{subItem.title.content}}</strong></li></a>
+				<a href="{{hash(contextPath + subItem.fullPath+ "?executionCourseID=" + executionCourse.externalId + "&executionCourseId=" + executionCourse.externalId)}}"><li class="navheader"><strong>{{subItem.title.content}}</strong></li></a>
 				{% else %}
 					<li class="navheader"><strong>{{subItem.title.content}}</strong></li>
 					{% lazyFor child in subItem.userMenuStream %}
-						<li><a href="{{contextPath}}{{child.fullPath}}?executionCourseID={{executionCourse.externalId}}&executionCourseId={{executionCourse.externalId}}">{{child.title.content}}</a></li>
+					<li><a href="{{hash(contextPath + child.fullPath + "?executionCourseID=" + executionCourse.externalId + "&executionCourseId=" + executionCourse.externalId)}}">{{child.title.content}}</a></li>
 					{% endLazyFor %}
 				{% endif %}
 			</ul>		
