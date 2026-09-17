@@ -1,4 +1,5 @@
 - Refactor: Migrate from javaee to jakarta [#qubIT-Omnis-10960]
+2.15.0 (17-09-2026)
 - Improvement: Support for new uilayer backend styling [#qubIT-Fenix-9441]
 
 2.14.0 (08-05-2025)
