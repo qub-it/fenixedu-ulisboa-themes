@@ -6,6 +6,12 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" media="screen" href="{{contextPath}}/themes/{{school-theme}}/css/general.css">
 	<link href="{{contextPath}}/themes/{{school-theme}}/css/style.css" rel="stylesheet">
+	  {% if uilayerBackend != null %}
+     <link href="{{application.contextPath}}/theme/variables.css?uilayerBackend={{uilayerBackend}}&hash={{contentHash}}" rel="stylesheet">
+    {% else %}
+    <link href="{{application.contextPath}}/theme/variables.css" rel="stylesheet">
+    {% endif %}
+
 
 	<!-- page plugins css -->
 
