@@ -112,7 +112,7 @@
       
      
       {% if localLogin %}
-      {% if (not providers is empty) %}
+      {% if providers is not empty %}
       <p style="width: 100%; text-align: left; margin-top: 8px; font-size: 12px">
 		 {{i18n('resources.ULisboaThemeResources', 'label.localLoginExplanation')}}
   	  </p>
@@ -127,12 +127,12 @@
         <form method="POST" class="login-form">
           <input type="hidden" name="callback" value="{{callback}}" />
 
-          <input type="text" name="username" autocapitalize="off" autocorrect="off" placeholder="{% if (not providers is empty) %}Username bennu{% else %}Username{%endif%}" autofocus />
+          <input type="text" name="username" autocapitalize="off" autocorrect="off" placeholder="{% if providers is not empty %}Username bennu{% else %}Username{%endif%}" autofocus />
           <input type="password" name="password" placeholder="Password" />
 
           <div class="footer">
             <input type="submit" value="&#10003;"   
-            	{% if (not providers is empty) %} 
+            	{% if providers is not empty %} 
             		class="with-third-parties" 
             	{% endif %}
             />
@@ -141,7 +141,7 @@
       </div>
       {% endif %}
 
-	  {% if localLogin and (not providers is empty) %}
+	  {% if localLogin and providers is not empty %}
         <hr />
         
          <p style="width: 100%; text-align: center; margin-top: 8px; font-size: 12px">
@@ -171,7 +171,7 @@
       </form>
       
 
-      {% if (not localLogin) and providers is empty %}
+      {% if not localLogin and providers is empty %}
         <div class="alert alert-warning">
           {{i18n('resources.BennuPortalResources', 'message.login.not.configured')}}
         </div>
